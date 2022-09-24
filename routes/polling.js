@@ -12,10 +12,13 @@ router.get('/:id', (req, res) => {
   res.render('index');
 });
 
-router.post('/:id', (req, res) => {
+router.post('/email', (req, res) => {
   // SQL QUERY
   console.log("Post recieved");
   res.status(200).send('Post received');
 });
 
+router.post('/form')
+
 module.exports = router;
+
