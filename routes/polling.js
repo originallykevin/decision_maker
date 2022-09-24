@@ -8,8 +8,14 @@
 const express = require('express');
 const router  = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('users');
-}); 
+router.get('/:id', (req, res) => {
+  res.render('index');
+});
+
+router.post('/:id', (req, res) => {
+  // SQL QUERY
+  console.log("Post recieved");
+  res.status(200).send('Post received');
+});
 
 module.exports = router;
