@@ -5,6 +5,8 @@ $(() => {
   const $addOption = $('#addOption');
   const $removeOption = $('#removeOption');
   const $options = $('#options');
+  const $links = $('#links');
+  const $linkMessage = $('#linkMessage');
 
   $form.hide();
 
@@ -24,10 +26,15 @@ $(() => {
     const serializedFormData = $form.serialize();
     event.preventDefault();
     event.stopPropagation();
-    console.log(serializedFormData);
+
     $.post('/form', serializedFormData)
       .then(() => {
-        $form.slideUp();
+        $.get('/polling:id')
+          .then((data) => {
+            createLinkElement(data, $links);
+            $form.slideUp();
+            $linkMessage.slideDown();
+        });
       });
   });
 
@@ -49,6 +56,15 @@ $(() => {
     };
   })
 
+  // links to the polls that are created
+  const createLinkElement = function(data, $appendTo) {
+    const resultLink = data.resultLink;
+    const pollLink = data.pollLink;
+    $appendTo.append(`
+    <a href="${resultLink}"/>
+    <a href="${pollLink}"/>
+    `);
+  }
 });
 
   // $email.on('submit', (event) => {
