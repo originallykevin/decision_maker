@@ -18,8 +18,6 @@ router.post('/email', (req, res) => {
   res.status(200).send();
 });
 
-
-
 router.post('/form', (req, res) => {
   console.log('Form data recieved');
   res.status(200).send();

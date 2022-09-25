@@ -1,31 +1,71 @@
 // Client facing scripts here
 $(() => {
-
   const $form = $('#form');
   const $email = $('#email');
-  const serializedData = $('#email').serialize();
+  const $addOption = $('#addOption');
+  const $removeOption = $('#removeOption');
+  const $options = $('#options');
 
   $form.hide();
 
-  $('#email').on('submit', (event) => {
-    event.preventDefault();
-    console.log("Before ajax");
-    $.ajax({
-      method: 'POST',
-      url: '/email',
-      data: serializedData,
-    })
-      .then(() => {
 
+
+  $email.on('submit', (event) => {
+    const serializedEmailData = $email.serialize();
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(serializedEmailData);
+    $.post('/email', serializedEmailData)
+    .then(() => {
+        console.log($email.val(''));
         $email.slideUp();
         $form.slideDown();
-
-      })
+      });
   });
+
+  $form.on('submit', (event) => {
+    const serializedFormData = $form.serialize();
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(serializedFormData);
+    $.post('/form', serializedFormData)
+      .then(() => {
+        $form.slideUp();
+      });
+  });
+
+  $addOption.on('click', (event) => {
+    const $option = $('.option');
+    event.preventDefault();
+    event.stopPropagation();
+    if($option.length < 10) {
+      $options.append(`<input class="form-control option" type="text" placeholder="Default input" aria-label="default input example">`);
+    }
+  })
+
+  $removeOption.on('click', (event) => {
+    const $option = $('.option'); //why does this only work in this eventlistener?
+    event.preventDefault();
+    event.stopPropagation();
+    if($option.length > 2) {
+      $option.last().remove();
+    };
+  })
 });
 
-
-
+  // $email.on('submit', (event) => {
+  //   event.preventDefault();
+  //   console.log("Before ajax");
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: '/email',
+  //     data: serializedData,
+  //   })
+  //     .then(() => {
+  //       $email.slideUp();
+  //       $form.slideDown();
+  //     })
+  // });
 
     // .done((response) => {
     //   const $usersList = $('#users');
