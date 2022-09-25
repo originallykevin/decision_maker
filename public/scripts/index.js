@@ -8,8 +8,6 @@ $(() => {
 
   $form.hide();
 
-
-
   $email.on('submit', (event) => {
     const serializedEmailData = $email.serialize();
     event.preventDefault();
@@ -17,7 +15,6 @@ $(() => {
     console.log(serializedEmailData);
     $.post('/email', serializedEmailData)
     .then(() => {
-        console.log($email.val(''));
         $email.slideUp();
         $form.slideDown();
       });
@@ -39,7 +36,7 @@ $(() => {
     event.preventDefault();
     event.stopPropagation();
     if($option.length < 10) {
-      $options.append(`<input class="form-control option" type="text" placeholder="Default input" aria-label="default input example">`);
+      $options.append(`<input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">`);
     }
   })
 
@@ -51,6 +48,7 @@ $(() => {
       $option.last().remove();
     };
   })
+
 });
 
   // $email.on('submit', (event) => {

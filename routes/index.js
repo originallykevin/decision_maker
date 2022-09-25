@@ -14,11 +14,13 @@ router.get('/', (req, res) => {
 
 router.post('/email', (req, res) => {
   // SQL QUERY
+  console.log(req.body);
   console.log('Email received');
   res.status(200).send();
 });
 
 router.post('/form', (req, res) => {
+  console.log(req.body);
   console.log('Form data recieved');
   res.status(200).send();
 });
