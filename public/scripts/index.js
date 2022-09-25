@@ -9,6 +9,7 @@ $(() => {
   const $linkMessage = $('#linkMessage');
 
   $form.hide();
+  $linkMessage.hide();
 
   $email.on('submit', (event) => {
     const serializedEmailData = $email.serialize();
@@ -26,12 +27,11 @@ $(() => {
     const serializedFormData = $form.serialize();
     event.preventDefault();
     event.stopPropagation();
-
     $.post('/form', serializedFormData)
       .then(() => {
-        $.get('/polling:id')
+        $.get('/polling/:id')
           .then((data) => {
-            createLinkElement(data, $links);
+            createLinkElement(data);
             $form.slideUp();
             $linkMessage.slideDown();
         });
@@ -57,13 +57,12 @@ $(() => {
   })
 
   // links to the polls that are created
-  const createLinkElement = function(data, $appendTo) {
+  const createLinkElement = function(data) {
+    console.log('createLink');
     const resultLink = data.resultLink;
     const pollLink = data.pollLink;
-    $appendTo.append(`
-    <a href="${resultLink}"/>
-    <a href="${pollLink}"/>
-    `);
+    $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
+
   }
 });
 

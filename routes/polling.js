@@ -7,10 +7,17 @@
 
 const express = require('express');
 const router  = express.Router();
+const { generateRandomString } = require('../helpers');
+
+
+// router.get('/:id', (req, res) => {
+//   res.render('index');
+// });
 
 router.get('/:id', (req, res) => {
-  res.render('index');
-});
+  console.log('Link created')
+  res.status(200).send({resultLink : 'http://www.reddit.com', pollLink : 'link'});
+})
 
 router.post('/email', (req, res) => {
   // SQL QUERY
