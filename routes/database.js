@@ -38,7 +38,7 @@ const createOptions = function (pollID, options) {
   const optionQueryString = `INSERT INTO options (poll_id, name, points) VALUES ($1, $2, 0)`;
   options.forEach(name => {
     const values = [pollID, name];
-    return db.query(optionQueryString, values);
+    db.query(optionQueryString, values);
   });
 };
 
