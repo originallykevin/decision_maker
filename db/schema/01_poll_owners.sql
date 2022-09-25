@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS poll_owners CASCADE;
+
+CREATE TABLE poll_owners (
+  id SERIAL PRIMARY KEY NOT NULL,
+  email VARCHAR(255) NOT NULL
+);
