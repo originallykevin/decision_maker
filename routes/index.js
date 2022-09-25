@@ -6,11 +6,10 @@
  */
 
 
-const { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions } = require('./database');
 const db = require('../db/connection');
 const express = require('express');
 const router = express.Router();
-const { generateRandomString } = require('../helpers');
+const { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl } = require('./database');
 
 router.get('/', (req, res) => {
   res.render('index');
@@ -29,30 +28,28 @@ router.post('/email', (req, res) => {
 });
 
 router.post('/form', (req, res) => {
-  //poll owners insert query
   const email = req.body.email;
   const title = req.body.title;
   const options = req.body.option;
+
   createPollOwner(email)
     .then(() => {
-      selectPollOwner(email).then((response) => {
-        const pollOwner = response;
-        createPoll(pollOwner, req.body)
-        .then(() => {
-          selectPollID(email, title)
-          .then((pollID) => {
-            createOptions(pollID, options)
-          })
-        })
-      })
+      return selectPollOwner(email)
     })
-  res.status(200).send();
+    .then((response) => {
+      const pollOwner = response;
+      return createPoll(pollOwner, req.body)
+    })
+    .then(() => {
+      return selectPollID(email, title)
+    })
+    .then((pollID) => {
+      createOptions(pollID, options);
+      return selectUrl(pollID)
+    })
+    .then((response) => {
+      res.status(200).send(response);
+    })
 });
 
 module.exports = router;
-
-const createURL = function () {
-  const randomString = generateRandomString();
-  const url = `http://localhost:8080/polling/${randomString}`;
-  return url;
-};

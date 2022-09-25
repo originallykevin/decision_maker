@@ -7,25 +7,9 @@
 
 const express = require('express');
 const router  = express.Router();
-const { generateRandomString } = require('../helpers');
-
-
-// router.get('/:id', (req, res) => {
-//   res.render('index');
-// });
 
 router.get('/:id', (req, res) => {
-  console.log('Link created')
-  res.status(200).send({resultLink : 'http://www.reddit.com', pollLink : 'link'});
-})
-
-router.post('/email', (req, res) => {
-  // SQL QUERY
-  console.log("Post recieved");
-  res.status(200).send('Post received');
+  res.status(200).send("This is working!");
 });
 
-router.post('/form')
-
 module.exports = router;
-

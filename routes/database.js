@@ -48,22 +48,13 @@ const createURL = function () {
   return url;
 };
 
-const selectUrlAdmin = function(pollID) {
-  const queryString = `SELECT url_admin FROM polls WHERE $1 = polls.id`
+const selectUrl = function(pollID) {
+  const queryString = `SELECT url_admin, url_voter FROM polls WHERE $1 = polls.id`
   const values = [pollID]
   return db.query(queryString, values)
   .then((response) => {
     return response.rows[0]
   })
-}
+};
 
-const selectUrlVoter = function (pollID) {
-  const queryString = `SELECT url_voter FROM polls WHERE $1 = polls.id`
-  const values = [pollID]
-  return db.query(queryString, values)
-  .then((response) => {
-    return response.rows[0]
-  })
-}
-
-module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions };
+module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl};
