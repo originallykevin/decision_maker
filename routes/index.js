@@ -5,6 +5,8 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
+
+const { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions } = require('./database');
 const db = require('../db/connection');
 const express = require('express');
 const router = express.Router();
@@ -15,8 +17,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/email', (req, res) => {
-  const queryString = `INSERT INTO poll_owners (email) VALUES ($1)`;
-  const values = [req.body.email];
+  const ownersQueryString = `INSERT INTO poll_owners (email) VALUES ($1)`;
+  const ownersValues = [req.body.email];
   return db.query(queryString, values)
     .then(() => {
       res.status(200).send();
@@ -27,25 +29,27 @@ router.post('/email', (req, res) => {
 });
 
 router.post('/form', (req, res) => {
-  // const { title, description, name } =
+  //poll owners insert query
+  const email = req.body.email;
   const title = req.body.title;
-  const description = req.body.description;
-  const queryParams = [];
-  const url_admin = createURL();
-  const url_voter = createURL();
-  const queryString = `INSERT INTO polls (owner_id, title, description, url_admin, url_voter)
-                        VALUES ($1, $2, $3, $4, $5)`;
+  const options = req.body.option;
+  createPollOwner(email)
+    .then(() => {
+      selectPollOwner(email).then((response) => {
+        const pollOwner = response;
+        createPoll(pollOwner, req.body)
+        .then(() => {
+          selectPollID(email, title)
+          .then((pollID) => {
+            createOptions(pollID, options)
+          })
+        })
+      })
+    })
   res.status(200).send();
 });
 
 module.exports = router;
-
-// const options = req.body.options;
-// const optionQueryString = `INSERT INTO options (poll_id, name, points) VALUES ($1, $2, 0)`;
-// options.forEach(option => {
-//   const values = [option];
-//   db.query(optionQueryString, values);
-// });
 
 const createURL = function () {
   const randomString = generateRandomString();

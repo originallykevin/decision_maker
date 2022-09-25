@@ -33,32 +33,34 @@
     <h1>TEXT</h1>
   </header> -->
 
-  <form id="email">
-    <h2>Please Enter Your Email to Get Started</h1>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Email</label>
-      <input type="email" name="email" class="form-control" id="exampleFormControlInput1">
-    </div>
-    <button class="btn btn-outline-success" id="submit" type="submit">Submit</button>
-  </form>
   <form id="form">
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Title</label>
-      <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Poll Description</label>
-      <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div id="options">
-      <input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">
-      <input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">
-    </div>
-    <button id="addOption" type="button" class="btn btn-primary">Add Option</button>
-    <button id="removeOption" type="button" class="btn btn-danger">Remove Option</button>
-    <div>
-      <button class="btn btn-outline-success" type="submit">Submit</button>
-    </div>
+    <section id="email">
+      <h2>Please Enter Your Email to Get Started</h1>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <button class="btn btn-outline-success" id="email-submit">Submit</button>
+    </section>
+    <section id="optionForm">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Poll Description</label>
+        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div id="options">
+        <input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">
+        <input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">
+      </div>
+      <button id="addOption" type="button" class="btn btn-primary">Add Option</button>
+      <button id="removeOption" type="button" class="btn btn-danger">Remove Option</button>
+      <div>
+        <button class="btn btn-outline-success" type="submit">Submit</button>
+      </div>
+    </section>
   </form>
 
   <section id="linkMessage">

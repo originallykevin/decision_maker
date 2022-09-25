@@ -7,32 +7,37 @@ $(() => {
   const $options = $('#options');
   const $links = $('#links');
   const $linkMessage = $('#linkMessage');
+  const $optionForm = $('#optionForm');
+  const $emailSubmit = $('#email-submit');
 
-  $form.hide();
+  $optionForm.hide();
   $linkMessage.hide();
 
-  $email.on('submit', (event) => {
-    const serializedEmailData = $email.serialize();
+  $emailSubmit.on('click', (event) => {
+    // const serializedEmailData = $email.serialize();
     event.preventDefault();
     event.stopPropagation();
-    console.log(serializedEmailData);
-    $.post('/email', serializedEmailData)
-    .then(() => {
-        $email.slideUp();
-        $form.slideDown();
-      });
+    // console.log(serializedEmailData);
+    // $.post('/email', serializedEmailData)
+    // .then(() => {
+    //     $email.slideUp();
+    //     $form.slideDown();
+    //   });
+      $email.slideUp();
+      $optionForm.slideDown();
   });
 
   $form.on('submit', (event) => {
     const serializedFormData = $form.serialize();
     event.preventDefault();
     event.stopPropagation();
+    console.log(serializedFormData);
     $.post('/form', serializedFormData)
       .then(() => {
         $.get('/polling/:id')
           .then((data) => {
             createLinkElement(data);
-            $form.slideUp();
+            $optionForm.slideUp();
             $linkMessage.slideDown();
         });
       });
