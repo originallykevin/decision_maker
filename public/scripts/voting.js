@@ -1,3 +1,3 @@
-  new Sortable(items, {
-    animation: 150
+new Sortable(options, {
+    animation: 500
 });

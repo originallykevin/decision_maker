@@ -22,7 +22,6 @@ router.get('/:id', (req, res) => {
       const description = response.rows[0].description;
       let templateVars = { title, description, options}
       res.render('poll', templateVars)
-
     })
 });
 
