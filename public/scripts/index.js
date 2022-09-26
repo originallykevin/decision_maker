@@ -24,7 +24,7 @@ $(() => {
     const serializedFormData = $form.serialize();
     event.preventDefault();
     event.stopPropagation();
-    console.log(serializedFormData);
+    // console.log(serializedFormData);
     $.post('/form', serializedFormData)
       .then((response) => {
         createLinkElement(response)
