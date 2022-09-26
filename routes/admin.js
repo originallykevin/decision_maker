@@ -9,19 +9,21 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-router.get('/', (req, res) => {
-  const query = `SELECT * FROM widgets`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const widgets = data.rows;
-      res.json({ widgets });
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  const options = [];
+  console.log('id', id)
+
+  db.query(`SELECT polls.title, polls.description, options.name FROM polls JOIN options ON polls.id = options.poll_id WHERE polls.url_admin LIKE '%${id}';`)
+    .then((response) => {
+      response.rows.forEach(option => {
+        options.push(option.name);
+      });
+      const title = response.rows[0].title;
+      const description = response.rows[0].description;
+      let templateVars = { title, description, options}
+      res.render('poll', templateVars)
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
 });
 
 module.exports = router;

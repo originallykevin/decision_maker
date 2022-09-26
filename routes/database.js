@@ -5,7 +5,7 @@ const createPollOwner = function (email) {
   const queryString = `INSERT INTO poll_owners (email) VALUES ($1)`
   const values = [email];
   return db.query(queryString, values);
-}
+};
 
 const selectPollOwner = function (email) {
   const queryString = `SELECT poll_owners.id as owner_id FROM poll_owners WHERE $1 = poll_owners.email`
@@ -14,16 +14,17 @@ const selectPollOwner = function (email) {
     .then((response) => {
       return response.rows[0].owner_id;
     });
-}
+};
 
 const createPoll = function (ownerID, reqBody) {
-  const { title, description } = reqBody
-  const url_admin = createURL();
-  const url_voter = createURL();
+  const { title, description } = reqBody;
+  const url_admin = createURL().url_admin;
+  const url_voter = createURL().url_voter;
+  console.log('voter', url_voter, 'admin', url_admin);
   const queryString = `INSERT INTO polls (owner_id, title, description, url_admin, url_voter) VALUES ($1, $2, $3, $4, $5)`
   const values = [ownerID, title, description, url_admin, url_voter]
   return db.query(queryString, values);
-}
+};
 
 const selectPollID = function (email, title) {
   const queryString = `SELECT polls.id as poll_id FROM polls JOIN poll_owners ON owner_id = poll_owners.id WHERE $1 = poll_owners.email AND $2 = polls.title`
@@ -32,7 +33,7 @@ const selectPollID = function (email, title) {
     .then((response) => {
       return response.rows[0].poll_id;
     });
-}
+};
 
 const createOptions = function (pollID, options) {
   const optionQueryString = `INSERT INTO options (poll_id, name, points) VALUES ($1, $2, 0)`;
@@ -44,8 +45,9 @@ const createOptions = function (pollID, options) {
 
 const createURL = function () {
   const randomString = generateRandomString();
-  const url = `http://localhost:8080/polling/${randomString}`;
-  return url;
+  const url_voter = `http://localhost:8080/polling/${randomString}`;
+  const url_admin = `http://localhost:8080/admin/${randomString}`;
+  return { url_voter, url_admin };
 };
 
 const selectUrl = function(pollID) {
