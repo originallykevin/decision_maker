@@ -18,16 +18,16 @@ router.get('/:id', (req, res) => {
 
   db.query(`SELECT polls.title, polls.description, options.id, options.name FROM polls JOIN options ON polls.id = options.poll_id WHERE polls.url_voter LIKE '%${id}'`)
     .then((response) => {
-      console.log(response.rows);
+
       response.rows.forEach(option => {
-        options.push(option.name);
+        options.push( { name: option.name, id: option.id } );
         optionID.push(option.id);
       });
       const title = response.rows[0].title;
       const description = response.rows[0].description;
 
       let templateVars = { title, description, options, optionID };
-      // console.log(templateVars)
+
       res.render('poll', templateVars);
     })
 
