@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
   const id = req.params.id
   const options = [];
 
-  db.query(`SELECT polls.title, polls.description, options.name FROM polls JOIN options ON polls.id = options.poll_id WHERE polls.url_voter LIKE '%${id}%';`)
+  db.query(`SELECT polls.title, polls.description, options.name FROM polls JOIN options ON polls.id = options.poll_id WHERE polls.url_voter LIKE '%${id}';`)
     .then((response) => {
       response.rows.forEach(option => {
         options.push(option.name);

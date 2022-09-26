@@ -12,17 +12,23 @@ const db = require('../db/connection');
 router.get('/:id', (req, res) => {
   const id = req.params.id
   const options = [];
-  console.log('id', id)
+  let title = '';
+  let description = '';
 
-  db.query(`SELECT polls.title, polls.description, options.name FROM polls JOIN options ON polls.id = options.poll_id WHERE polls.url_admin LIKE '%${id}';`)
+  db.query(`SELECT polls.title, polls.description, polls.id FROM polls WHERE polls.url_admin LIKE '%${id}';`)
     .then((response) => {
-      response.rows.forEach(option => {
-        options.push(option.name);
-      });
-      const title = response.rows[0].title;
-      const description = response.rows[0].description;
-      let templateVars = { title, description, options}
-      res.render('poll', templateVars)
+      const pollID = response.rows[0].id;
+      title = response.rows[0].title;
+      description = response.rows[0].description;
+
+      const queryString = `SELECT name, points FROM options WHERE poll_id = $1 ORDER BY points DESC`;
+      const values = [pollID];
+      return db.query(queryString, values);
+    })
+    .then((response) => {
+      const options = response.rows;
+      const templateVars = { title, description, options}
+      res.render('admin', templateVars)
     })
 });
 

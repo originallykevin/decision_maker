@@ -18,9 +18,8 @@ const selectPollOwner = function (email) {
 
 const createPoll = function (ownerID, reqBody) {
   const { title, description } = reqBody;
-  const url_admin = createURL().url_admin;
-  const url_voter = createURL().url_voter;
-  console.log('voter', url_voter, 'admin', url_admin);
+  const url_admin = createURL('admin');
+  const url_voter = createURL('polling');
   const queryString = `INSERT INTO polls (owner_id, title, description, url_admin, url_voter) VALUES ($1, $2, $3, $4, $5)`
   const values = [ownerID, title, description, url_admin, url_voter]
   return db.query(queryString, values);
@@ -43,11 +42,10 @@ const createOptions = function (pollID, options) {
   });
 };
 
-const createURL = function () {
+const createURL = function (route) { //add check later to make sure url is not already being used
   const randomString = generateRandomString();
-  const url_voter = `http://localhost:8080/polling/${randomString}`;
-  const url_admin = `http://localhost:8080/admin/${randomString}`;
-  return { url_voter, url_admin };
+  const url = `http://localhost:8080/${route}/${randomString}`;
+  return url;
 };
 
 const selectUrl = function(pollID) {
