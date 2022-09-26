@@ -43,8 +43,26 @@ router.post('/voter', (req, res) => {
 
 });
 
-router.post('/:id', (req, res) => {
-
+router.post('/vote', (req, res) => {
+  // console.log('req.body', req.body);
+  const optionsArr = req.body.optionsArr;
+  // console.log('borderCount', bordaCount(optionsArr))
+  const count = bordaCount(optionsArr);
+  const queryString = `UPDATE options SET points = $1 WHERE options.id = $2`;
+  for(let option in count) {
+    const values = [count[option], option];
+    // console.log('values:', values)
+    db.query(queryString, values);
+  }
 });
+
+const bordaCount = function(optionsArr) {
+  const optionsAndPoints = {};
+  for(let i = 0; i < optionsArr.length; i++) {
+    const points = optionsArr.length - (i + 1);
+    optionsAndPoints[optionsArr[i]] = points;
+  }
+  return optionsAndPoints;
+}
 
 module.exports = router;

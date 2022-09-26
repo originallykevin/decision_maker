@@ -23,10 +23,10 @@ $(() => {
       .then(() => {
         $voterName.slideUp();
         $poll.slideDown();
-        const $list = $options.find('li');
-        for(let i = 0; i < $list.length; i++) {
-          console.log($list[i].id);
-        }
+        // const $list = $options.find('li');
+        // for(let i = 0; i < $list.length; i++) {
+        //   console.log($list[i].id);
+        // }
 
       });
   });
@@ -34,16 +34,19 @@ $(() => {
   $poll.on('submit', (event) => {
     event.preventDefault();
     event.stopPropagation();
-
     const $list = $options.find('li');
+    const $optionID = [];
     for(let i = 0; i < $list.length; i++) {
-      console.log($list[i].id);
+      $optionID.push($list[i].id);
     }
-    // $.post('/:id', serializedData)
-    //   .then(() => {
-    //     $poll.slideUp();
+    const serializedData = encodeURIComponent($optionID);
+    console.log('optionsIDSerialized', serializedData);
+    console.log($optionID)
+    $.post('/polling/vote', {optionsArr : $optionID})
+      .then(() => {
+        $poll.slideUp();
 
-    //   });
+      });
   });
 
 });
