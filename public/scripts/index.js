@@ -30,6 +30,7 @@ $(() => {
         createLinkElement(response)
         $optionForm.slideUp();
         $linkMessage.slideDown();
+        // after submitting the form
       });
   });
 
@@ -57,5 +58,14 @@ $(() => {
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
     $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
+  }
+
+  // email will be sent when the form submit button is clicked
+  const createEmail = function() {
+    $form.on('submit', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      $.post('/:id/admin')
+    })
   }
 });
