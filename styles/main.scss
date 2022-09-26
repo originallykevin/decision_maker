@@ -1,3 +1,4 @@
+
 body {
   display: flex;
   flex-direction: column;
@@ -15,4 +16,51 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    width:100%;
+    top: 0;
+    position: fixed;
+    background-color: white;
+    border: solid red 1px;
+  }
+  .nav-title {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+  }
+  .nav-message {
+    display: flex;
+    justify-content: center;
+    border: solid blue 1px;
+  }
+  #form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+
+  }
+  #email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .button-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  .submit-button {
+    display: flex;
+    justify-content: center;
+  }
+  #links {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }

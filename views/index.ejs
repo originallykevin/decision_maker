@@ -19,8 +19,10 @@
 </head>
 
 <body>
-  <!-- <nav>
-    <span>Decision Maker</span>
+  <nav>
+    <div class="nav-title">
+      <span>Decision Maker</span>
+    </div>
     <div class="nav-message">
       <a><b>Make</b> a decision</a>
       <div id="scroll-nav">
@@ -29,8 +31,8 @@
     </div>
   </nav>
 
-  <header>
-    <h1>TEXT</h1>
+  <!-- <header>
+    <h1>Welcome!</h1>
   </header> -->
 
   <form id="form">
@@ -55,9 +57,11 @@
         <input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">
         <input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">
       </div>
-      <button id="addOption" type="button" class="btn btn-primary">Add Option</button>
-      <button id="removeOption" type="button" class="btn btn-danger">Remove Option</button>
-      <div>
+      <div class="button-bar">
+        <button id="addOption" type="button" class="btn btn-primary">Add Option</button>
+        <button id="removeOption" type="button" class="btn btn-danger">Remove Option</button>
+      </div>
+      <div class="submit-button">
         <button class="btn btn-outline-success" type="submit">Submit</button>
       </div>
     </section>
