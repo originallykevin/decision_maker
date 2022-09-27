@@ -57,4 +57,12 @@ const selectUrl = function(pollID) {
   })
 };
 
-module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl};
+const createVoter = function(name) {
+  const queryString = `INSERT INTO votes (voter_name) VALUES ($1)`
+  const values = [name];
+  return db.query(queryString, values);
+}
+
+
+
+module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl, createVoter };

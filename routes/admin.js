@@ -20,7 +20,6 @@ router.get('/:id', (req, res) => {
       const pollID = response.rows[0].id;
       title = response.rows[0].title;
       description = response.rows[0].description;
-
       const queryString = `SELECT name, points FROM options WHERE poll_id = $1 ORDER BY points DESC`;
       const values = [pollID];
       return db.query(queryString, values);
