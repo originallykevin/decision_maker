@@ -3,7 +3,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 100px;
   min-height: 100vh;
 
   background: rgb(163, 208, 219);
@@ -62,7 +61,6 @@ nav {
   top: 0;
   position: fixed;
   background-color: white;
-  border: solid red 1px;
 }
 .nav-title {
   display: flex;
@@ -72,7 +70,6 @@ nav {
 .nav-message {
   display: flex;
   justify-content: center;
-  border: solid blue 1px;
 }
 #form {
   display: flex;
