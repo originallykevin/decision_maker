@@ -36,7 +36,8 @@ router.post('/form', (req, res) => {
       const body = `Your poll "${title}" has been created.<br>
                     Share this link for people to vote: ${urlVoter} <br>
                     Visit this link to view the results: ${urlAdmin}`;
-      nodeMailer(email, subject, body); //sends email
+      nodeMailer(email, subject, body) //sends email
+        .catch(console.error)
       res.status(200).send(response);
     });
 });
