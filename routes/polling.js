@@ -10,6 +10,8 @@ const router = express.Router();
 const db = require('../db/connection');
 
 const { createVoter } = require('./database');
+const { emailVoteConfirmation } = require('../db/queries/polling');
+const { nodeMailer } = require('../nodemailer');
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
@@ -41,20 +43,29 @@ router.post('/voter', (req, res) => {
       res.status(200).send(response);
     });
 
-
 });
 
-router.post('/vote', (req, res) => {
-  // console.log('req.body', req.body);
+router.post('/:id', (req, res) => {
   const optionsArr = req.body.optionsArr;
-  // console.log('borderCount', bordaCount(optionsArr))
+  const urlID = req.params.id;
   const count = bordaCount(optionsArr);
   const queryString = `UPDATE options SET points = points + $1 WHERE options.id = $2`;
   for(let option in count) {
     const values = [count[option], option];
-    // console.log('values:', values)
     db.query(queryString, values);
   }
+
+  emailVoteConfirmation(urlID)
+    .then((response) => {
+      const title = response.rows[0].title;
+      const email = response.rows[0].email;
+      const url_admin = response.rows[0].url_admin;
+      const subject = `Somone has voted in a poll you own named ${title}`;
+      const body = `Somone has voted in a poll you own: "${title}".<br>
+                    Please visit this link to view the results: ${url_admin}`;
+      nodeMailer(email, subject, body);
+    })
+  res.status(200).send();
 });
 
 const bordaCount = function(optionsArr) {

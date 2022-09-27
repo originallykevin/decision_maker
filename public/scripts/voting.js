@@ -36,13 +36,15 @@ $(() => {
     event.stopPropagation();
     const $list = $options.find('li');
     const $optionID = [];
+    const url = window.location.href;
+    const id = url.substring(url.lastIndexOf('/') + 1);
     for(let i = 0; i < $list.length; i++) {
       $optionID.push($list[i].id);
     }
     const serializedData = encodeURIComponent($optionID);
     console.log('optionsIDSerialized', serializedData);
     console.log($optionID)
-    $.post('/polling/vote', {optionsArr : $optionID})
+    $.post(`/polling/${id}`, {optionsArr : $optionID})
       .then(() => {
         $poll.slideUp();
 

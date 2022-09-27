@@ -63,6 +63,12 @@ const createVoter = function(name) {
   return db.query(queryString, values);
 }
 
+const getOwnerEmail = function(pollID) {
+  const queryString = `SELECT email FROM poll_owners JOIN polls ON owner_id = poll_owners.id WHERE polls.id = $1`;
+  const values = [pollID];
+  return db.query(queryString, values);
+}
 
 
-module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl, createVoter };
+
+module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl, createVoter, getOwnerEmail, };
