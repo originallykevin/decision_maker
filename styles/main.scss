@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
 
   font-family: 'Arvo', serif;
-  // font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
 
   background: rgb(163, 208, 219);
   background: linear-gradient(227deg,
@@ -15,6 +15,7 @@ body {
       rgba(163, 219, 208, 1) 59%,
       rgba(163, 208, 219, 1) 74%,
       rgba(163, 208, 219, 1) 100%);
+
 }
 
 // main page
@@ -40,6 +41,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Playfair Display', serif;
 }
 
 .button-bar {
@@ -56,11 +58,14 @@ body {
 #links {
   display: flex;
   justify-content: space-evenly;
+  margin: 0 auto;
 }
 
 .link-text {
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
+  font-family: 'Playfair Display', serif;
 }
 
 // Polling Page
@@ -69,7 +74,7 @@ body {
   justify-content: center;
   flex-direction: column;
   margin: 100px;
-  // border: red solid 1px;
+  font-family: 'Playfair Display', serif;
 }
 
 .vote-here {
@@ -104,6 +109,7 @@ body {
   flex-direction: column;
   align-items: center;
   align-content: center;
+  font-family: 'Playfair Display', serif;
 }
 
 #name-submit {
@@ -112,7 +118,7 @@ body {
 
 #poll-submit {
   display: flex;
-  margin: 10px;
+  margin: 10px 0;
 
 }
 
@@ -121,3 +127,8 @@ body {
 }
 
 // Admin Page
+
+#admin-stats {
+  padding: 0 10px;
+  font-family: 'Playfair Display', serif;
+}

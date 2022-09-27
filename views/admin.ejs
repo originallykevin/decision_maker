@@ -33,9 +33,11 @@
     </div>
   </nav>
 
-  <h1>Poll Statistics</h1>
-  <h1><%= title %></h1>
-  <h2><%= description %></h2>
+  <section id="admin-stats">
+    <h1>Poll Statistics</h1>
+    <h1><%= title %></h1>
+    <h2><%= description %></h2>
+  </section>
   <ul class="list-group" id="options">
     <% options.forEach(option => { %>
       <li class="list-group-item"><%= option.name %> Points <%=option.points%></li>
