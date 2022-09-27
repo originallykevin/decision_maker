@@ -41,7 +41,7 @@ $(() => {
 
     //limits the voting options to 10
     if ($option.length < 10) {
-      $options.append(`<input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">`);
+      $options.append(`<input class="form-control option" name="option" type="text" placeholder="Choice" aria-label="default input example">`);
     }
   })
 
@@ -64,4 +64,6 @@ $(() => {
     const pollLink = data.url_voter;
     $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
   }
+
+
 });

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+  <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Playfair+Display&display=swap" rel="stylesheet">
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/admin.js"></script>
@@ -21,14 +21,18 @@
 </head>
 
 <body>
-  <h1>Poll Statistics</h1>
-  <h1><%= title %></h1>
-  <h2><%= description %></h2>
+  <%- include('partials/nav') %>
+
+  <section id="admin-stats">
+    <h1>Poll Statistics</h1>
+    <h2><%= title %></h1>
+    <h2><%= description %></h2>
   <ul class="list-group" id="options">
     <% options.forEach(option => { %>
       <li class="list-group-item"><%= option.name %> Points <%=option.points%></li>
     <% }) %>
   </ul>
+  </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
