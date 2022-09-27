@@ -9,12 +9,11 @@ body {
 
   background: rgb(163, 208, 219);
   background: linear-gradient(227deg,
-      rgba(163, 208, 219, 1) 0%,
-      rgba(163, 176, 219, 1) 20%,
-      rgba(163, 173, 219, 1) 34%,
-      rgba(163, 219, 208, 1) 59%,
-      rgba(163, 208, 219, 1) 74%,
-      rgba(163, 208, 219, 1) 100%);
+      rgb(210, 180, 140),
+      rgb(228, 227, 222),
+      rgb(167, 190, 176),
+      rgb(89, 144, 139));
+
 }
 
 // main page
@@ -33,14 +32,20 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 125px;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  input {
+    padding: 6px 12px;
+  }
 }
 
-#email {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Playfair Display', serif;
-}
 
 .button-bar {
   display: flex;
@@ -71,37 +76,31 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 100px;
+  margin: 125px;
   font-family: 'Playfair Display', serif;
+  border: red solid 1px;
+
+  h2 {
+    padding-bottom: 10px;
+    font-size: large;
+  }
+
+  h6 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  dt {
+    font-size: x-large;
+    padding: 10px 0;
+  }
 }
 
 .vote-here {
   display: flex;
   justify-content: center;
   padding: 50px 0;
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px 0;
-}
-
-.title-res {
-  font-size: xx-large;
-  padding: 10px 0;
-}
-
-.description {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.description-res {
-  font-size: x-large;
-  padding: 10px 0;
 }
 
 #voter-name {
@@ -111,6 +110,10 @@ body {
   align-content: center;
   margin: 10px 0;
   font-family: 'Playfair Display', serif;
+
+  h2 {
+    margin-top:150px;
+  }
 }
 
 #name-submit {
