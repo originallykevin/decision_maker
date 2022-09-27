@@ -1,5 +1,5 @@
-const db = require('../db/connection');
-const { generateRandomString } = require('../helpers');
+const db = require('../connection');
+const { generateRandomString } = require('../../lib/helpers');
 
 const createPollOwner = function (email) {
   const queryString = `INSERT INTO poll_owners (email) VALUES ($1)`
@@ -57,12 +57,10 @@ const selectUrl = function(pollID) {
   })
 };
 
-const createVoter = function(name) {
-  const queryString = `INSERT INTO votes (voter_name) VALUES ($1)`
-  const values = [name];
+const getOwnerEmail = function(pollID) {
+  const queryString = `SELECT email FROM poll_owners JOIN polls ON owner_id = poll_owners.id WHERE polls.id = $1`;
+  const values = [pollID];
   return db.query(queryString, values);
 }
 
-
-
-module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl, createVoter };
+module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl, getOwnerEmail, };
