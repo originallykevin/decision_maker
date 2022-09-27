@@ -37,7 +37,7 @@ const adminRoutes = require('./routes/admin');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/', indexRoutes);
 app.use('/polling', pollingRoutes);
-app.use('/admin/:id', adminRoutes);
+app.use('/admin', adminRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page

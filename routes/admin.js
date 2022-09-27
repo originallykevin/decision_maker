@@ -9,19 +9,26 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-router.get('/', (req, res) => {
-  const query = `SELECT * FROM widgets`;
-  console.log(query);
-  db.query(query)
-    .then(data => {
-      const widgets = data.rows;
-      res.json({ widgets });
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  const options = [];
+  let title = '';
+  let description = '';
+
+  db.query(`SELECT polls.title, polls.description, polls.id FROM polls WHERE polls.url_admin LIKE '%${id}';`)
+    .then((response) => {
+      const pollID = response.rows[0].id;
+      title = response.rows[0].title;
+      description = response.rows[0].description;
+      const queryString = `SELECT name, points FROM options WHERE poll_id = $1 ORDER BY points DESC`;
+      const values = [pollID];
+      return db.query(queryString, values);
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+    .then((response) => {
+      const options = response.rows;
+      const templateVars = { title, description, options}
+      res.render('admin', templateVars)
+    })
 });
 
 module.exports = router;

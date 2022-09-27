@@ -18,16 +18,17 @@ router.get('/:id', (req, res) => {
 
   db.query(`SELECT polls.title, polls.description, options.id, options.name FROM polls JOIN options ON polls.id = options.poll_id WHERE polls.url_voter LIKE '%${id}'`)
     .then((response) => {
-      console.log(response.rows);
+
       response.rows.forEach(option => {
-        options.push(option.name);
+        options.push( { name: option.name, id: option.id } );
         optionID.push(option.id);
       });
+      console.log(response.rows);
       const title = response.rows[0].title;
       const description = response.rows[0].description;
 
       let templateVars = { title, description, options, optionID };
-      // console.log(templateVars)
+
       res.render('poll', templateVars);
     })
 
@@ -43,9 +44,26 @@ router.post('/voter', (req, res) => {
 
 });
 
-router.post('/:id', (req, res) => {
-
+router.post('/vote', (req, res) => {
+  // console.log('req.body', req.body);
+  const optionsArr = req.body.optionsArr;
+  // console.log('borderCount', bordaCount(optionsArr))
+  const count = bordaCount(optionsArr);
+  const queryString = `UPDATE options SET points = points + $1 WHERE options.id = $2`;
+  for(let option in count) {
+    const values = [count[option], option];
+    // console.log('values:', values)
+    db.query(queryString, values);
+  }
 });
 
+const bordaCount = function(optionsArr) {
+  const optionsAndPoints = {};
+  for(let i = 0; i < optionsArr.length; i++) {
+    const points = optionsArr.length - (i + 1);
+    optionsAndPoints[optionsArr[i]] = points;
+  }
+  return optionsAndPoints;
+}
 
 module.exports = router;

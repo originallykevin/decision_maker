@@ -23,18 +23,26 @@ $(() => {
       .then(() => {
         $voterName.slideUp();
         $poll.slideDown();
-        console.log($options.find('li')[0].id);
+        // const $list = $options.find('li');
+        // for(let i = 0; i < $list.length; i++) {
+        //   console.log($list[i].id);
+        // }
+
       });
   });
 
   $poll.on('submit', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    // $(function() {
-    //   ('#options').sortable();
-    // });
-
-    $.post('/:id', serializedData)
+    const $list = $options.find('li');
+    const $optionID = [];
+    for(let i = 0; i < $list.length; i++) {
+      $optionID.push($list[i].id);
+    }
+    const serializedData = encodeURIComponent($optionID);
+    console.log('optionsIDSerialized', serializedData);
+    console.log($optionID)
+    $.post('/polling/vote', {optionsArr : $optionID})
       .then(() => {
         $poll.slideUp();
 
@@ -42,10 +50,4 @@ $(() => {
   });
 
 });
-
-
-// function submit() {
-//   let indexOrder = $('#options').sortable('toArray');
-//   alert(indexOrder);
-// }
 
