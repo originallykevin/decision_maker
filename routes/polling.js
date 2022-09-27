@@ -48,7 +48,7 @@ router.post('/vote', (req, res) => {
   const optionsArr = req.body.optionsArr;
   // console.log('borderCount', bordaCount(optionsArr))
   const count = bordaCount(optionsArr);
-  const queryString = `UPDATE options SET points = $1 WHERE options.id = $2`;
+  const queryString = `UPDATE options SET points = points + $1 WHERE options.id = $2`;
   for(let option in count) {
     const values = [count[option], option];
     // console.log('values:', values)
