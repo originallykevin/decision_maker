@@ -15,7 +15,7 @@ $(() => {
 
   $emailSubmit.on('click', (event) => {
 
-
+    //adding alert fields for empty email field
     let x = document.getElementById("exampleFormControlInput1").value;
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (x === '') {
