@@ -69,6 +69,4 @@ const getOwnerEmail = function(pollID) {
   return db.query(queryString, values);
 }
 
-
-
 module.exports = { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl, createVoter, getOwnerEmail, };
