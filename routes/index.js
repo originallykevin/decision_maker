@@ -1,8 +1,8 @@
 const db = require('../db/connection');
 const express = require('express');
 const router = express.Router();
-const { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl } = require('./database'); //db query functions
-const { nodeMailer } = require('../nodemailer'); //email sending function
+const { createPollOwner, selectPollOwner, createPoll, selectPollID, createOptions, selectUrl } = require('../db/queries/index'); //db query functions
+const { nodeMailer } = require('../lib/nodemailer'); //email sending function
 
 router.get('/', (req, res) => {
   res.render('index');

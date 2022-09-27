@@ -1,5 +1,5 @@
-const db = require('../db/connection');
-const { generateRandomString } = require('../helpers');
+const db = require('../connection');
+const { generateRandomString } = require('../../lib/helpers');
 
 const createPollOwner = function (email) {
   const queryString = `INSERT INTO poll_owners (email) VALUES ($1)`

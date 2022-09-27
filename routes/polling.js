@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
 
-const { createVoter } = require('./database');
+const { createVoter } = require('../db/queries/index');
 const { emailVoteConfirmation } = require('../db/queries/polling'); //db queries
-const { nodeMailer } = require('../nodemailer'); //email sender function
+const { nodeMailer } = require('../lib/nodemailer'); //email sender function
 
 //renders poll for voter to vote
 router.get('/:id', (req, res) => {
