@@ -3,5 +3,16 @@
 body,
 html {
   margin: 0;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    width:100%;
+    top: 0;
+    position: fixed;
+    background-color: white;
+  }
 }
 
