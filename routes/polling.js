@@ -19,12 +19,12 @@ router.get('/:id', (req, res) => {
 
       //creates an array of the queried options name and id together in an object
       response.rows.forEach(option => {
-        options.push( { name: option.name, id: option.id } );
+        options.push({ name: option.name, id: option.id });
       });
 
       const templateVars = { title, description, options };
       res.render('poll', templateVars);
-    })
+    });
 });
 
 //!! Unfinished? Needs to link voter to options or poll !!
@@ -44,7 +44,7 @@ router.post('/:id', (req, res) => {
 
   //loops through options after bordaCount has assigned points and updates the number of points for the options in the db
   const queryString = `UPDATE options SET points = points + $1 WHERE options.id = $2`;
-  for(let option in bCountOptions) {
+  for (let option in bCountOptions) {
     const values = [bCountOptions[option], option];
     db.query(queryString, values);
   }
@@ -55,23 +55,23 @@ router.post('/:id', (req, res) => {
       //email variables
       const title = response.rows[0].title;
       const email = response.rows[0].email;
-      const url_admin = response.rows[0].url_admin;
+      const urlAdmin = response.rows[0].url_admin;
       const subject = `Somone has voted in a poll you own named ${title}`;
       const body = `Somone has voted in a poll you own: "${title}".<br>
-                    Please visit this link to view the results: ${url_admin}`;
+                    Please visit this link to view the results: ${urlAdmin}`;
       nodeMailer(email, subject, body); //email sender
-    })
+    });
   res.status(200).send();
 });
 
 //https://en.wikipedia.org/wiki/Borda_count
 const bordaCount = function(optionsArr) {
   const optionsAndPoints = {};
-  for(let i = 0; i < optionsArr.length; i++) { //could change this c style loop with a forEach with index?
+  for (let i = 0; i < optionsArr.length; i++) { //could change this c style loop with a forEach with index?
     const points = optionsArr.length - (i + 1);
     optionsAndPoints[optionsArr[i]] = points;
   }
   return optionsAndPoints;
-}
+};
 
 module.exports = router;
