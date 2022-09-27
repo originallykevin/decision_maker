@@ -54,7 +54,7 @@ $(() => {
 
     //limits the voting options to 10
     if ($option.length < 10) {
-      $options.append(`<input class="form-control option" name="option" type="text" placeholder="Default input" aria-label="default input example">`);
+      $options.append(`<input class="form-control option" name="option" type="text" placeholder="Choice" aria-label="default input example">`);
     }
   });
 
