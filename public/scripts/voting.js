@@ -16,6 +16,11 @@ $(() => {
 
   //on submission of voter name
   $voterName.on('submit', (event) => {
+    let x = document.getElementById("voter-name").value;
+    if (x === '') {
+      alert('please input name');
+      return false;
+    }
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $voterName.serialize();
@@ -40,12 +45,12 @@ $(() => {
     //creating the submitted list of voting options and their ranked position
     const $optionID = [];
     const $list = $options.find('li'); //finds the list of voting options based on html selector
-    for(let i = 0; i < $list.length; i++) {
+    for (let i = 0; i < $list.length; i++) {
       $optionID.push($list[i].id); //pushing into an array so we can send voting options in a post request
     }
 
     //post request sending voting options
-    $.post(`/polling/${urlID}`, {optionsArr : $optionID})
+    $.post(`/polling/${urlID}`, { optionsArr: $optionID })
       .then(() => {
         $poll.slideUp();
       });

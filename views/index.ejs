@@ -36,9 +36,10 @@
   <form class="container" id="form">
     <section id="email">
       <h2>Please Enter Your Email to Get Started</h1>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" id="exampleFormControlInput1">
+      <div class="mb-3" id="alert">
+        <label for="exampleFormControlInput1" class="form-label">Email: </label>
+        <input type='email' name='email' class="form-control" id="exampleFormControlInput1" required >
+        <!-- <section class="alert" id="no-email">Please input an email</section> -->
       </div>
       <button class="btn btn-outline-success" id="email-submit">Submit</button>
     </section>
