@@ -11,16 +11,15 @@ $(() => {
   const $nameSubmit = $('#name-submit'); //?
   const $options = $('#options');
   const $listItem = $('#list-group-item'); //?
+  const $finishVote = $('#finish-vote');
+
 
   $poll.hide(); //hides voting options before voter has entered their name
+  $finishVote.hide();
+
 
   //on submission of voter name
   $voterName.on('submit', (event) => {
-    let x = document.getElementById("voter-name").value;
-    if (x === '') {
-      alert('please input name');
-      return false;
-    }
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $voterName.serialize();
@@ -41,6 +40,7 @@ $(() => {
     //grabbing current url substring /polling/{this}
     const url = window.location.href;
     const urlID = url.substring(url.lastIndexOf('/') + 1);
+    const serializedData = $voterName.serialize();
 
     //creating the submitted list of voting options and their ranked position
     const $optionID = [];
@@ -53,7 +53,15 @@ $(() => {
     $.post(`/polling/${urlID}`, { optionsArr: $optionID })
       .then(() => {
         $poll.slideUp();
+        getNameFromSubmit(serializedData);
+        $finishVote.slideDown();
       });
+
+    // grab voter name and display message with name
+    const getNameFromSubmit = function(data) {
+      const nameSubmitted = data.slice(5).replaceAll('%20', ' ');
+      $finishVote.append(`Thank you for voting ${nameSubmitted}!`);
+    };
   });
 });
 

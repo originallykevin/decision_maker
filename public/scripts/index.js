@@ -4,10 +4,14 @@ $(() => {
   const $addOption = $('#addOption');
   const $removeOption = $('#removeOption');
   const $options = $('#options');
-  const $links = $('#links');
+  const $linkAdmin = $('#link-admin');
+  const $linkVoter = $('#link-voter');
+  const $adminCopy = $('#adminCopy');
+  const $voterCopy = $('#voterCopy');
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
+
 
 
   $optionForm.hide(); //hides poll creation form
@@ -19,10 +23,12 @@ $(() => {
     let x = document.getElementById("exampleFormControlInput1").value;
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (x === '') {
-      $alert.append(`<section class="alert">Please input an email</section>`)
+      $email.append(`<section class="alert">Please input an email</section>`);
+      setTimeout(() => { $('.alert').remove(); }, 2000);
       return false;
     } else if (!emailReg.test(x)) {
-      $alert.append(`<section class="alert">Please input a valid email</section>`);
+      $email.append(`<section class="alert">Please input a valid email</section>`);
+      setTimeout(() => { $('.alert').remove(); }, 2000);
       return false;
     }
 
@@ -75,6 +81,57 @@ $(() => {
     console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
-    $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
+    $linkAdmin.append(`<a href="${resultLink}" id='admin-link' style="text-decoration: none" >Admin Link</a>`);
+    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
+    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+
+    $adminCopy.on('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const copyText = resultLink;
+      document.addEventListener('copy', (event) => {
+        event.clipboardData.setData('text/plain', copyText);
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      document.execCommand('copy');
+      console.log('copied text : ', copyText);
+      // alert('Your admin link: ' + copyText);
+      const element1 = document.getElementById('admin-link');
+      element1.remove();
+      $linkAdmin.append(`<span id="admin-copy"> Link Copied!</span>`);
+      const element2 = document.getElementById('admin-copy');
+      setTimeout(()=> {
+        element2.remove()
+        $linkAdmin.append(`<a href="${resultLink}" id='admin-link'style="text-decoration: none" >Admin Link</a>`)
+      }, 2000)
+
+    });
+
+    $voterCopy.on('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const copyText = pollLink;
+      document.addEventListener('copy', (event) => {
+        event.clipboardData.setData('text/plain', copyText);
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      document.execCommand('copy');
+      console.log('copied text : ', copyText);
+      // alert('Your voter link: ' + copyText);
+      const element1 = document.getElementById('vote-link');
+      element1.remove();
+      $linkAdmin.append(`<span id="vote-copy"> Link Copied!</span>`);
+      const element2 = document.getElementById('vote-copy');
+      setTimeout(()=> {
+        element2.remove()
+        $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
+      }, 2000)
+    });
+
   };
 });

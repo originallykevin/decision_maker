@@ -1,10 +1,20 @@
+body {
+  h1 {
+    margin-top: 100px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+}
 #stats-table {
   margin: 2em;
   width: 75%;
   text-align: center;
-
   thead {
     font-weight: bold;
+  }
+  td {
+    vertical-align: middle;
+    height: 1em;
   }
 }
 
@@ -14,10 +24,32 @@
   border: 2px solid #e2fbff;
   background-color: #B6C6BB;
   padding: 20px;
-  flex-direction: row;
+  flex-direction: column;
+  margin-left: 2em;
+  margin-right: 2em;
+  justify-content: center;
+}
 
+#table-chart {
+  display: flex;
+  flex-direction: row;
+}
+
+#poll-information {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 #myChart {
   margin: 2em;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+@media only screen and (max-width: 700px) {
+  #table-chart {
+    display: flex;
+    flex-direction: column;
+  }
 }

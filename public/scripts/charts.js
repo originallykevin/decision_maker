@@ -1,6 +1,5 @@
 const url = window.location.href;
 const urlID = url.substring(url.lastIndexOf('/') + 1);
-console.log('chart url', urlID);
 
 $.get(`/admin/chart/${urlID}`)
   .then((response) => {
@@ -32,8 +31,7 @@ $.get(`/admin/chart/${urlID}`)
       document.getElementById('myChart'),
       config
     );
-
-  })
+  });
 
 const createHexColor = function() {
   const firstValue = Math.floor(Math.random() * (255 - 0) + 0);

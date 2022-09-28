@@ -1,9 +1,13 @@
+const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
+var http = require('http');
+
 
 const { getPollInformation, createVoter, emailVoteConfirmation, updateCount } = require('../db/queries/polling'); //db queries
 const { nodeMailer } = require('../lib/nodemailer'); //email sender function
+const { user } = require('pg/lib/defaults');
 
 //renders poll for voter to vote
 router.get('/:id', (req, res) => {
@@ -20,7 +24,6 @@ router.get('/:id', (req, res) => {
       response.rows.forEach(option => {
         options.push({ name: option.name, id: option.id });
       });
-
       const templateVars = { title, description, options };
       res.render('poll', templateVars);
     });
@@ -28,6 +31,16 @@ router.get('/:id', (req, res) => {
 
 //!! Unfinished? Needs to link voter to options or poll !!
 router.post('/voter', (req, res) => {
+  // getting users IP
+  let userIP = [];
+  http.get({ 'host': 'api.ipify.org', 'port': 80, 'path': '/' }, function(res) {
+    res.on('data', function(ip) {
+      userIP.push(ip);
+      console.log("User's IP: " + ip);
+      return userIP;
+    });
+  });
+
   const voterName = req.body.name;
   createVoter(voterName)
     .then((response) => {
@@ -52,10 +65,10 @@ router.post('/:id', (req, res) => {
       const email = response.rows[0].email;
       const urlAdmin = response.rows[0].url_admin;
       const subject = `Someone has voted in a poll you own named ${title}`;
-      const body = `Somone has voted in a poll you own: "${title}".<br>
+      const body = `Someone has voted in a poll you own: "${title}".<br>
                     Please visit this link to view the results: ${urlAdmin}`;
       nodeMailer(email, subject, body) //email sender
-        .catch(console.error)
+        .catch(console.error);
     });
   res.status(200).send();
 });
