@@ -51,7 +51,7 @@ router.post('/:id', (req, res) => {
       const title = response.rows[0].title;
       const email = response.rows[0].email;
       const urlAdmin = response.rows[0].url_admin;
-      const subject = `Somone has voted in a poll you own named ${title}`;
+      const subject = `Someone has voted in a poll you own named ${title}`;
       const body = `Somone has voted in a poll you own: "${title}".<br>
                     Please visit this link to view the results: ${urlAdmin}`;
       nodeMailer(email, subject, body) //email sender

@@ -9,10 +9,23 @@ $(() => {
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
 
+
   $optionForm.hide(); //hides poll creation form
   $linkMessage.hide(); //hides final message elements
 
   $emailSubmit.on('click', (event) => {
+
+    //adding alert fields for empty email field
+    let x = document.getElementById("exampleFormControlInput1").value;
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if (x === '') {
+      $alert.append(`<section class="alert">Please input an email</section>`)
+      return false;
+    } else if (!emailReg.test(x)) {
+      $alert.append(`<section class="alert">Please input a valid email</section>`);
+      return false;
+    }
+
     event.preventDefault();
     event.stopPropagation();
     $email.slideUp(); //hides email submission after email has been entered
@@ -64,5 +77,4 @@ $(() => {
     const pollLink = data.url_voter;
     $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
   };
-
 });

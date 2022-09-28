@@ -26,19 +26,23 @@
 <body id="polling-body">
   <%- include('partials/nav') %>
 
-    <form id="voter-name">
-      <h2>Please Enter Your Name to Access Poll</h1>
-        <div>
-          <!-- <label class="form-label">Name:</label> -->
-          <input type="name" name="name" class="form-control" id="voter-name" placeholder="Name">
-        </div>
-        <button class="btn btn-outline-success" type="submit" id="name-submit">Access Poll</button>
-    </form>
+  <form id="voter-name">
+    <h2>Please Enter Your Name to Access Poll</h1>
+      <div>
+        <!-- <label class="form-label">Name:</label> -->
+        <input type="name" name="name" class="form-control" id="voter-name" placeholder="Name" required >
+      </div>
+      <button class="btn btn-outline-success" type="submit" id="name-submit">Access Poll</button>
+  </form>
 
-    <form id="poll">
-      <h1 class="vote-here"><u>Vote Here</u></h1>
-      <h6 class="title">Decision to be made: <dt class="title-res">
-          <%= title %>
+  <form id="poll">
+    <h1 class="vote-here"><u>Vote Here</u></h1>
+    <h6 class="title">Decision to be made: <dt class="title-res">
+        <%= title %>
+      </dt>
+      </h1>
+      <h6 class="description">Description: <dt class="description-res">
+          <%= description %>
         </dt>
         </h1>
         <h6 class="description">Description: <dt class="description-res">
