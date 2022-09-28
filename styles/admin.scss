@@ -1,0 +1,23 @@
+#stats-table {
+  margin: 2em;
+  width: 75%;
+  text-align: center;
+
+  thead {
+    font-weight: bold;
+  }
+}
+
+#admin-stats {
+  display: flex;
+  border-radius: 25px;
+  border: 2px solid #e2fbff;
+  background-color: #B6C6BB;
+  padding: 20px;
+  flex-direction: row;
+
+}
+
+#myChart {
+  margin: 2em;
+}

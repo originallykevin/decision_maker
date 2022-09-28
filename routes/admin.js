@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getPollInformation, getOptionsAndPoints } = require("../db/queries/admin");
+const { getPieChartData } = require("../db/queries/charts");
 
 //renders admin page which contains poll results
 router.get('/:id', (req, res) => {
@@ -23,4 +24,12 @@ router.get('/:id', (req, res) => {
     })
 });
 
+router.get('/chart/:id', (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  getPieChartData(id)
+    .then((response) => {
+      res.send(response);
+    })
+})
 module.exports = router;
