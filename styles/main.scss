@@ -32,61 +32,27 @@ body {
   position: fixed;
 }
 
-/* This will be activated when the snackbar's class is 'show' which will be added through JS */
-#admin-copy.show {
-  display: flex;
-  flex-direction: column;
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
 
-/* Animations for fading in and out */
-@-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
+// .nav-title {
+//   display: flex;
+//   justify-content: center;
+//   font-size: xx-large;
+//   align-items: baseline;
+// }
 
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
+// .nav-message {
+//   display: flex;
+//   justify-content: center;
+// }
 
-@-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
+// .logo-image {
+//   position: relative;
+//   transition: transgoem .75s;
+// }
 
-@keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-
-.title {
-  height: 150px;
-}
-
-.nav-title {
-  display: flex;
-  justify-content: center;
-  font-size: xx-large;
-  align-items: baseline;
-}
-
-.nav-message {
-  display: flex;
-  justify-content: center;
-}
-
-.logo-image {
-  position: relative;
-  opacity: .6;
-  transition: transgoem .75s;
-}
-
-.nav-title:hover .logo-image {
-  transform: scale(1.15);
-}
+// .nav-title:hover .logo-image {
+//   transform: scale(1.15);
+// }
 
 #form {
   display: flex;
@@ -130,10 +96,10 @@ body {
     border: red solid 2px;
   }
 
-  a {
-    padding: 2px;
-    color: inherit;
-  }
+  // a {
+  //   padding: 2px;
+  //   color: inherit;
+  // }
 }
 
 .link-text {

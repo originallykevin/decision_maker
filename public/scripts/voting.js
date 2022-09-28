@@ -12,6 +12,7 @@ $(() => {
   const $options = $('#options');
   const $listItem = $('#list-group-item'); //?
   const $finishVote = $('#finish-vote');
+  const $navMessage = $('#nav-message')
 
 
   $poll.hide(); //hides voting options before voter has entered their name
@@ -63,5 +64,12 @@ $(() => {
       $finishVote.append(`Thank you for voting ${nameSubmitted}!`);
     };
   });
+
+  // nav-bar create a poll
+  $navMessage.on('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    window.location.replace('/')
+  })
 });
 

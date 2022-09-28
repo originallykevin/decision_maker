@@ -11,6 +11,7 @@ $(() => {
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
+  const $navMessage = $('#nav-message');
 
 
 
@@ -132,6 +133,12 @@ $(() => {
         $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
       }, 2000)
     });
-
   };
+
+  // nav-bar create a poll
+  $navMessage.on('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    window.location.replace('/')
+  })
 });
