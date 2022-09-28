@@ -33,15 +33,14 @@
             <input type="email" name="email" class="form-control" placeholder="Email" id="exampleFormControlInput1" required>
           </div>
           <button class="btn btn-outline-success" id="email-submit">Submit</button>
-          <div id="email-error" class="clear">  </div>
+          <div id="email-error">  </div>
       </section>
       <section id="optionForm">
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Question</label>
-          <input type="text" name="title" class="form-control" placeholder="Title" id="exampleFormControlInput1" required>
+          <label for="exampleFormControlInput1" class="form-label" >Question</label>
+          <input type="text" name="title" class="form-control" placeholder="Title" id="question" >
         </div>
         <div class="mb-3">
-          <!-- <label for="exampleFormControlTextarea1" class="form-label">Poll Description</label> -->
           <textarea class="form-control" name="description" placeholder="Poll Description"
             id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
@@ -58,6 +57,7 @@
         <div class="submit-button">
           <button class="btn btn-outline-success" id="form-submit" type="submit">Submit</button>
         </div>
+        <div id="question-error"> </div>
       </section>
     </form>
 

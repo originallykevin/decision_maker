@@ -26,13 +26,13 @@ $(() => {
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (x === '') {
       $emailError.hide()
-      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8px;">Please input an email</div>`);
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8px;"><i class="fa-solid fa-triangle-exclamation"></i> Please input an email</div>`);
       $emailError.slideDown('slow');
       setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
     } else if (!emailReg.test(x)) {
       $emailError.hide()
-      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8ems">Please input a valid email</div>`);
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8ems"><i class="fa-solid fa-triangle-exclamation"></i> Please input a valid email</div>`);
       $emailError.slideDown('slow');
       setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
@@ -45,6 +45,16 @@ $(() => {
   });
 
   $form.on('submit', (event) => {
+
+    let x = document.getElementById("question").value;
+      const $questionError = $('#question-error')
+      if (x === '') {
+        $questionError.hide()
+        $questionError.append(`<div id="alert" class="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please enter a question</div>`);
+        $questionError.slideDown('slow');
+        setTimeout(() => { $('.alert').slideUp(); }, 1500);
+        return false;
+      }
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $form.serialize();
@@ -116,6 +126,7 @@ $(() => {
     });
 
     $voterCopy.on('click', (event) => {
+
       event.preventDefault();
       event.stopPropagation();
       const copyText = pollLink;
