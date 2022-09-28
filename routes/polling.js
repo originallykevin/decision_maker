@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
@@ -20,7 +21,6 @@ router.get('/:id', (req, res) => {
       response.rows.forEach(option => {
         options.push({ name: option.name, id: option.id });
       });
-
       const templateVars = { title, description, options };
       res.render('poll', templateVars);
     });
@@ -55,7 +55,7 @@ router.post('/:id', (req, res) => {
       const body = `Somone has voted in a poll you own: "${title}".<br>
                     Please visit this link to view the results: ${urlAdmin}`;
       nodeMailer(email, subject, body) //email sender
-        .catch(console.error)
+        .catch(console.error);
     });
   res.status(200).send();
 });

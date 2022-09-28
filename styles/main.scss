@@ -95,6 +95,7 @@ body {
   }
 }
 
+
 .vote-here {
   display: flex;
   justify-content: center;
@@ -127,6 +128,13 @@ body {
 
 .list-group-item:hover {
   background-color: lightgrey;
+}
+
+#finish-vote {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+  font-family: 'Playfair Display', serif;
 }
 
 // Admin Page
