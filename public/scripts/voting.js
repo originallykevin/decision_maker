@@ -16,11 +16,6 @@ $(() => {
 
   //on submission of voter name
   $voterName.on('submit', (event) => {
-    let x = document.getElementById("voter-name").value;
-    if (x === '') {
-      alert('please input name');
-      return false;
-    }
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $voterName.serialize();

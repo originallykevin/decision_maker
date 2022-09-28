@@ -75,6 +75,6 @@ $(() => {
     console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
-    $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
+    $links.append(`<a href="${resultLink}" style="text-decoration: none">Admin Link</a> <a href="${pollLink}" style="text-decoration: none">Voter Link</a>`);
   };
 });

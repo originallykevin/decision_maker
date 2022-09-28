@@ -16,15 +16,32 @@ body {
 }
 
 // main page
+
+img { text-decoration: none; }
+
+.title {
+  height: 150px;
+}
 .nav-title {
   display: flex;
   justify-content: center;
   font-size: xx-large;
+  align-items: baseline;
 }
 
 .nav-message {
   display: flex;
   justify-content: center;
+}
+
+.logo-image {
+  position: relative;
+  opacity: .6;
+  transition: transgoem .75s;
+}
+
+.nav-title:hover .logo-image{
+  transform: scale(1.15);
 }
 
 #form {
