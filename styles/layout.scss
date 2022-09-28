@@ -29,17 +29,22 @@ html {
     // .nav-title:hover .logo-image {
     //   transform: scale(1.15);
     // }
-    .logo-image:hover {
-      transform: scale(1.15);
-    }
+    // .logo-image:hover {
+    //   transform: scale(1.15);
+    // }
 
     // create new poll button
     #nav-message {
       position:fixed;
-      top: 100px;
+      top: 90px;
       right: 15px;
       font-size: large;
-      color: white;
+      color: whitesmoke;
+
+      :hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 }
