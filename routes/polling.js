@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
@@ -23,7 +24,6 @@ router.get('/:id', (req, res) => {
       response.rows.forEach(option => {
         options.push({ name: option.name, id: option.id });
       });
-
       const templateVars = { title, description, options };
       res.render('poll', templateVars);
     });

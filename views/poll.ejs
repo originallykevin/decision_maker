@@ -26,6 +26,7 @@
 <body id="polling-body">
   <%- include('partials/nav') %>
 
+<<<<<<< HEAD
   <form id="voter-name">
     <h2>Please Enter Your Name to Access Poll</h1>
       <div>
@@ -43,21 +44,45 @@
       </h1>
       <h6 class="description">Description: <dt class="description-res">
           <%= description %>
+=======
+    <form id="voter-name">
+      <h2>Please Enter Your Name to Access Poll</h1>
+        <div>
+          <!-- <label class="form-label">Name:</label> -->
+          <input type="name" name="name" class="form-control" id="voter-name" placeholder="Name">
+        </div>
+        <button class="btn btn-outline-success" type="submit" id="name-submit">Access Poll</button>
+    </form>
+
+    <form id="poll">
+      <h1 class="vote-here"><u>Vote Here</u></h1>
+      <h6 class="title">Decision to be made: <dt class="title-res">
+          <%= title %>
+>>>>>>> 61f5ad1596bb78f4bc30b44f305246f9a6c2424a
         </dt>
-        </h2>
-        <h2>Choices:</h2>
-        <ul class="list-group" id="options">
-          <% options.forEach(option=> { %>
-            <li class="list-group-item" id="<%=option.id%>">
-              <%= option.name %>
-            </li>
-            <% }) %>
-        </ul>
-        <button id="poll-submit" class="btn btn-outline-success" type="submit">Submit Vote</button>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-          crossorigin="anonymous"></script>
-  </form>
+        </h1>
+        <h6 class="description">Description: <dt class="description-res">
+            <%= description %>
+          </dt>
+          </h2>
+          <h2>Choices:</h2>
+          <ul class="list-group" id="options">
+            <% options.forEach(option=> { %>
+              <li class="list-group-item" id="<%=option.id%>">
+                <%= option.name %>
+              </li>
+              <% }) %>
+          </ul>
+          <button id="poll-submit" class="btn btn-outline-success" type="submit">Submit Vote</button>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+    </form>
+
+    <p id="finish-vote">
+     <!-- Where thank you message goes -->
+    </p>
+
 </body>
 
 </html>

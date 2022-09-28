@@ -4,7 +4,10 @@ $(() => {
   const $addOption = $('#addOption');
   const $removeOption = $('#removeOption');
   const $options = $('#options');
-  const $links = $('#links');
+  const $linkAdmin = $('#link-admin');
+  const $linkVoter = $('#link-voter');
+  const $adminCopy = $('#adminCopy');
+  const $voterCopy = $('#voterCopy');
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
@@ -75,6 +78,40 @@ $(() => {
     console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
-    $links.append(`<a href="${resultLink}" style="text-decoration: none">Admin Link</a> <a href="${pollLink}" style="text-decoration: none">Voter Link</a>`);
+    $linkAdmin.append(`<a href="${resultLink}" style="text-decoration: none" >Admin Link</a>`);
+    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $linkVoter.append(`<a href="${pollLink}">Voter Link</a>`);
+    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+
+    $adminCopy.on('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const copyText = resultLink;
+      document.addEventListener('copy', (event) => {
+        event.clipboardData.setData('text/plain', copyText);
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      document.execCommand('copy');
+      console.log('copied text : ', copyText);
+      alert('Your admin link: ' + copyText);
+    });
+
+    $voterCopy.on('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const copyText = pollLink;
+      document.addEventListener('copy', (event) => {
+        event.clipboardData.setData('text/plain', copyText);
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      document.execCommand('copy');
+      console.log('copied text : ', copyText);
+      alert('Your voter link: ' + copyText);
+    });
+
   };
 });

@@ -17,11 +17,10 @@ body {
 
 // main page
 
-img { text-decoration: none; }
-
 .title {
   height: 150px;
 }
+
 .nav-title {
   display: flex;
   justify-content: center;
@@ -40,7 +39,7 @@ img { text-decoration: none; }
   transition: transgoem .75s;
 }
 
-.nav-title:hover .logo-image{
+.nav-title:hover .logo-image {
   transform: scale(1.15);
 }
 
@@ -62,7 +61,6 @@ img { text-decoration: none; }
   }
 }
 
-
 .button-bar {
   display: flex;
   justify-content: space-between;
@@ -78,6 +76,19 @@ img { text-decoration: none; }
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
+
+  #link-admin {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 20px;
+    border: red solid 2px;
+  }
+
+  a {
+    padding: 2px;
+    color: inherit;
+  }
 }
 
 .link-text {
@@ -112,6 +123,7 @@ img { text-decoration: none; }
   }
 }
 
+
 .vote-here {
   display: flex;
   justify-content: center;
@@ -127,7 +139,7 @@ img { text-decoration: none; }
   font-family: 'Playfair Display', serif;
 
   h2 {
-    margin-top:150px;
+    margin-top: 150px;
   }
 }
 
@@ -144,6 +156,12 @@ img { text-decoration: none; }
 
 .list-group-item:hover {
   background-color: lightgrey;
+}
+
+#finish-vote {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
 }
 
 // Admin Page
