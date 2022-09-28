@@ -82,9 +82,9 @@ $(() => {
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
     $linkAdmin.append(`<a href="${resultLink}" id='admin-link' style="text-decoration: none" >Admin Link</a>`);
-    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard" style="font-size: 30px;padding-right: 3px;"></i></a>`);
     $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
-    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard" style="font-size: 30px;padding-right: 3px;"></i></a>`);
 
     $adminCopy.on('click', (event) => {
       event.preventDefault();
@@ -98,7 +98,6 @@ $(() => {
 
       document.execCommand('copy');
       console.log('copied text : ', copyText);
-      // alert('Your admin link: ' + copyText);
       const element1 = document.getElementById('admin-link');
       element1.remove();
       $linkAdmin.append(`<span id="admin-copy"> Link Copied!</span>`);
@@ -122,10 +121,9 @@ $(() => {
 
       document.execCommand('copy');
       console.log('copied text : ', copyText);
-      // alert('Your voter link: ' + copyText);
       const element1 = document.getElementById('vote-link');
       element1.remove();
-      $linkAdmin.append(`<span id="vote-copy"> Link Copied!</span>`);
+      $linkVoter.append(`<span id="vote-copy"> Link Copied!</span>`);
       const element2 = document.getElementById('vote-copy');
       setTimeout(()=> {
         element2.remove()
