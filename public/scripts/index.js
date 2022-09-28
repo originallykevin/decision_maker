@@ -27,7 +27,7 @@ $(() => {
     //poll form submission post request creates poll in db
     $.post('/form', serializedData)
       .then((response) => {
-        createLinkElement(response) //appends url links as elements onto html for final message
+        createLinkElement(response); //appends url links as elements onto html for final message
         $optionForm.slideUp(); //hides poll form
         $linkMessage.slideDown(); //reveals final message
       });
@@ -43,7 +43,7 @@ $(() => {
     if ($option.length < 10) {
       $options.append(`<input class="form-control option" name="option" type="text" placeholder="Choice" aria-label="default input example">`);
     }
-  })
+  });
 
   //removes voting option from poll form
   $removeOption.on('click', (event) => {
@@ -55,15 +55,14 @@ $(() => {
     if ($option.length > 2) {
       $option.last().remove();
     };
-  })
+  });
 
   //appends url links as elements onto html for final message
-  const createLinkElement = function (data) {
+  const createLinkElement = function(data) {
     console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
     $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
-  }
-
+  };
 
 });
