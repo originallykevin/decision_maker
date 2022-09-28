@@ -15,6 +15,7 @@ body {
       rgb(89, 144, 139));
 }
 
+
 .title {
   height: 150px;
 }
@@ -48,6 +49,17 @@ body {
 
 #email-submit:hover {
   background-color: #273f4838;
+}
+
+#alert {
+  padding-left:0%;
+  padding-top: 3 em;
+
+}
+
+#email-error {
+  padding-left:0%;
+  border-top: 4px;
 }
 
 #form {
@@ -263,13 +275,25 @@ a {
 
 #name-submit {
   margin: 10px 0;
+  color: #273f48f2;
+  border-color: #273f48f2;
+}
+
+#name-submit:hover {
+  background-color: #273f4838;
 }
 
 #poll-submit {
   display: flex;
   justify-content: center;
   margin: 20px 0;
-  // width: 25% ;
+  color: #273f48f2;
+  border-color: #273f48f2;
+  width: max-content
+}
+
+#poll-submit:hover {
+  background-color: #273f4864;
 }
 
 .list-group-item:hover {

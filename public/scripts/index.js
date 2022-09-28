@@ -11,11 +11,13 @@ $(() => {
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
+  const $emailError = $('#email-error');
 
 
 
   $optionForm.hide(); //hides poll creation form
   $linkMessage.hide(); //hides final message elements
+
 
   $emailSubmit.on('click', (event) => {
 
@@ -23,12 +25,16 @@ $(() => {
     let x = document.getElementById("exampleFormControlInput1").value;
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (x === '') {
-      $email.append(`<section class="alert">Please input an email</section>`);
-      setTimeout(() => { $('.alert').remove(); }, 2000);
+      $emailError.hide()
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8px;">Please input an email</div>`);
+      $emailError.slideDown('slow');
+      setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
     } else if (!emailReg.test(x)) {
-      $email.append(`<section class="alert">Please input a valid email</section>`);
-      setTimeout(() => { $('.alert').remove(); }, 2000);
+      $emailError.hide()
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8ems">Please input a valid email</div>`);
+      $emailError.slideDown('slow');
+      setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
     }
 
@@ -102,10 +108,10 @@ $(() => {
       element1.remove();
       $linkAdmin.append(`<span id="admin-copy"> Link Copied!</span>`);
       const element2 = document.getElementById('admin-copy');
-      setTimeout(()=> {
-        element2.remove()
-        $linkAdmin.append(`<a href="${resultLink}" id='admin-link'style="text-decoration: none" >Admin Link</a>`)
-      }, 2000)
+      setTimeout(() => {
+        element2.remove();
+        $linkAdmin.append(`<a href="${resultLink}" id='admin-link'style="text-decoration: none" >Admin Link</a>`);
+      }, 2000);
 
     });
 
@@ -125,10 +131,10 @@ $(() => {
       element1.remove();
       $linkVoter.append(`<span id="vote-copy"> Link Copied!</span>`);
       const element2 = document.getElementById('vote-copy');
-      setTimeout(()=> {
-        element2.remove()
+      setTimeout(() => {
+        element2.remove();
         $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
-      }, 2000)
+      }, 2000);
     });
 
   };
