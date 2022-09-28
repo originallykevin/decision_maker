@@ -17,16 +17,6 @@ body {
 }
 
 // main page
-.nav-title {
-  display: flex;
-  justify-content: center;
-  font-size: xx-large;
-}
-
-.nav-message {
-  display: flex;
-  justify-content: center;
-}
 
 #form {
   display: flex;
@@ -62,6 +52,11 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
+
+  // clipboard
+  // .fa-regular {
+  //   border: red solid 1px;
+  // }
 }
 
 .link-text {
@@ -135,7 +130,6 @@ body {
   display: flex;
   justify-content: center;
   font-size: x-large;
-  font-family: 'Playfair Display', serif;
 }
 
 // Admin Page

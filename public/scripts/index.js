@@ -4,7 +4,9 @@ $(() => {
   const $addOption = $('#addOption');
   const $removeOption = $('#removeOption');
   const $options = $('#options');
-  const $links = $('#links');
+  const $linkAdmin = $('#link-admin');
+  const $linkVoter = $('#link-voter');
+  const $adminCopy = $('#adminCopy')
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
@@ -57,13 +59,29 @@ $(() => {
     };
   })
 
+
   //appends url links as elements onto html for final message
   const createLinkElement = function (data) {
     console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
-    $links.append(`<a href="${resultLink}">Admin Link</a> <a href="${pollLink}">Voter Link</a>`);
-  }
+    $linkAdmin.append(`<a href="${resultLink}">Admin Link</a> <a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`)
+    $linkVoter.append(`<a href="${pollLink}">Voter Link</a> <a href="${pollLink}" </a> <i class="fa-regular fa-clipboard"></i>`);
 
+    $linkAdmin.on('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const copyText = resultLink;
+      document.addEventListener('copy', (event) => {
+        event.clipboardData.setData('text/plain', copyText);
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      document.execCommand('copy')
+      console.log('copied text : ', copyText);
+      alert('Your Link: ' + copyText);
+    })
+  }
 
 });
