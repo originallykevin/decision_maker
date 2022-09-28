@@ -11,8 +11,12 @@ $(() => {
   const $nameSubmit = $('#name-submit'); //?
   const $options = $('#options');
   const $listItem = $('#list-group-item'); //?
+  const $finishVote = $('#finish-vote');
+
 
   $poll.hide(); //hides voting options before voter has entered their name
+  $finishVote.hide()
+
 
   //on submission of voter name
   $voterName.on('submit', (event) => {
@@ -36,6 +40,7 @@ $(() => {
     //grabbing current url substring /polling/{this}
     const url = window.location.href;
     const urlID = url.substring(url.lastIndexOf('/') + 1);
+    const serializedData = $voterName.serialize()
 
     //creating the submitted list of voting options and their ranked position
     const $optionID = [];
@@ -48,7 +53,14 @@ $(() => {
     $.post(`/polling/${urlID}`, {optionsArr : $optionID})
       .then(() => {
         $poll.slideUp();
-      });
+        getNameFromSubmit(serializedData)
+        $finishVote.slideDown();
+      })
+
+      const getNameFromSubmit = function(data) {
+        const nameSubmitted = data.slice(5)
+        $finishVote.append(`Thank you for voting ${nameSubmitted}!`)
+      }
   });
 });
 
