@@ -53,10 +53,18 @@ body {
   justify-content: space-evenly;
   margin: 0 auto;
 
-  // clipboard
-  // .fa-regular {
-  //   border: red solid 1px;
-  // }
+  #link-admin {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 20px;
+    border: red solid 2px;
+  }
+
+  a {
+    padding: 2px;
+    color: inherit;
+  }
 }
 
 .link-text {

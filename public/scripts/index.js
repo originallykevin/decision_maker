@@ -6,7 +6,8 @@ $(() => {
   const $options = $('#options');
   const $linkAdmin = $('#link-admin');
   const $linkVoter = $('#link-voter');
-  const $adminCopy = $('#adminCopy')
+  const $adminCopy = $('#adminCopy');
+  const $voterCopy = $('#voterCopy');
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
@@ -29,7 +30,7 @@ $(() => {
     //poll form submission post request creates poll in db
     $.post('/form', serializedData)
       .then((response) => {
-        createLinkElement(response) //appends url links as elements onto html for final message
+        createLinkElement(response); //appends url links as elements onto html for final message
         $optionForm.slideUp(); //hides poll form
         $linkMessage.slideDown(); //reveals final message
       });
@@ -45,7 +46,7 @@ $(() => {
     if ($option.length < 10) {
       $options.append(`<input class="form-control option" name="option" type="text" placeholder="Choice" aria-label="default input example">`);
     }
-  })
+  });
 
   //removes voting option from poll form
   $removeOption.on('click', (event) => {
@@ -57,18 +58,20 @@ $(() => {
     if ($option.length > 2) {
       $option.last().remove();
     };
-  })
+  });
 
 
   //appends url links as elements onto html for final message
-  const createLinkElement = function (data) {
+  const createLinkElement = function(data) {
     console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
-    $linkAdmin.append(`<a href="${resultLink}">Admin Link</a> <a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`)
-    $linkVoter.append(`<a href="${pollLink}">Voter Link</a> <a href="${pollLink}" </a> <i class="fa-regular fa-clipboard"></i>`);
+    $linkAdmin.append(`<a href="${resultLink}" style="text-decoration: none" >Admin Link</a>`);
+    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $linkVoter.append(`<a href="${pollLink}">Voter Link</a>`);
+    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard"></i></a>`);
 
-    $linkAdmin.on('click', (event) => {
+    $adminCopy.on('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
       const copyText = resultLink;
@@ -78,10 +81,25 @@ $(() => {
         event.stopPropagation();
       }, true);
 
-      document.execCommand('copy')
+      document.execCommand('copy');
       console.log('copied text : ', copyText);
-      alert('Your Link: ' + copyText);
-    })
-  }
+      alert('Your admin link: ' + copyText);
+    });
 
+    $voterCopy.on('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const copyText = pollLink;
+      document.addEventListener('copy', (event) => {
+        event.clipboardData.setData('text/plain', copyText);
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+
+      document.execCommand('copy');
+      console.log('copied text : ', copyText);
+      alert('Your voter link: ' + copyText);
+    });
+
+  };
 });
