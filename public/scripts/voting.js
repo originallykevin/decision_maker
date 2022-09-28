@@ -58,7 +58,7 @@ $(() => {
       })
 
       const getNameFromSubmit = function(data) {
-        const nameSubmitted = data.slice(5)
+        const nameSubmitted = data.slice(5).replaceAll('%20', ' ')
         $finishVote.append(`Thank you for voting ${nameSubmitted}!`)
       }
   });
