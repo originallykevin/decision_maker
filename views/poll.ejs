@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/nav.css" />
+  <link rel="stylesheet" href="/styles/poll.css" />
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -39,6 +40,8 @@
     </form>
     <form id="poll">
       <h1 class="vote-here"><u>Vote Here</u></h1>
+
+
       <h6 class="title">Decision to be made: <dt class="title-res">
           <%= title %>
         </dt>
@@ -47,6 +50,7 @@
             <%= description %>
           </dt>
           </h2>
+          <div class="poll-box">
           <h2>Choices:</h2>
           <ul class="list-group" id="options">
             <% options.forEach(option=> { %>
@@ -56,14 +60,15 @@
               <% }) %>
           </ul>
           <button id="poll-submit" class="btn btn-outline-success" type="submit">Submit Vote</button>
+        </div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
             crossorigin="anonymous"></script>
     </form>
 
-    <p id="finish-vote">
+    <span id="finish-vote">
       <!-- Where thank you message goes -->
-    </p>
+    </span>
 
 </body>
 
