@@ -14,11 +14,8 @@ $(() => {
   const $emailError = $('#email-error');
   const $navMessage = $('#nav-message');
 
-
-
   $optionForm.hide(); //hides poll creation form
   $linkMessage.hide(); //hides final message elements
-
 
   $emailSubmit.on('click', (event) => {
 
@@ -47,6 +44,7 @@ $(() => {
 
   $form.on('submit', (event) => {
 
+    //adding alert field for empty question field
     let x = document.getElementById("question").value;
       const $questionError = $('#question-error')
       if (x === '') {
@@ -56,6 +54,7 @@ $(() => {
         setTimeout(() => { $('.alert').slideUp(); }, 1500);
         return false;
       }
+
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $form.serialize();
@@ -85,7 +84,7 @@ $(() => {
   $removeOption.on('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    const $option = $('.option'); //why does this only work in this eventlistener?
+    const $option = $('.option');
 
     //doesn't allow less than two poll options
     if ($option.length > 2) {
@@ -95,7 +94,6 @@ $(() => {
 
   //appends url links as elements onto html for final message
   const createLinkElement = function(data) {
-    console.log('createLink');
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
     $linkAdmin.append(`<a href="${resultLink}" id='admin-link' style="text-decoration: none" >Admin Link</a>`);
@@ -116,18 +114,16 @@ $(() => {
       document.execCommand('copy');
       console.log('copied text : ', copyText);
       const element1 = document.getElementById('admin-link');
-      element1.remove();
+      element1.remove();// nav-bar create a poll
       $linkAdmin.append(`<span id="admin-copy"> Link Copied!</span>`);
       const element2 = document.getElementById('admin-copy');
       setTimeout(() => {
         element2.remove();
         $linkAdmin.append(`<a href="${resultLink}" id='admin-link'style="text-decoration: none" >Admin Link</a>`);
       }, 2000);
-
     });
 
     $voterCopy.on('click', (event) => {
-
       event.preventDefault();
       event.stopPropagation();
       const copyText = pollLink;

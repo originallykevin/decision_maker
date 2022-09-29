@@ -26,7 +26,6 @@ router.get('/:id', (req, res) => {
 
 router.get('/chart/:id', (req, res) => {
   const id = req.params.id;
-  console.log(id);
   getPieChartData(id)
     .then((response) => {
       res.send(response);

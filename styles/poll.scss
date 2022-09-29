@@ -5,6 +5,7 @@
   margin: 7em 2em 0 2em;
   justify-content: center;
   font-family: 'Playfair Display', serif;
+  align-items: center;
 
   .poll-box {
     border-radius: 25px;
@@ -12,13 +13,13 @@
     background-color: #B6C6BB;
     padding: 20px;
     flex-direction: column;
+    width: 50%;
 
   }
 
   .vote-here {
     display: flex;
     justify-content: center;
-    // padding-top: 50px;
   }
 
   h2 {
@@ -55,8 +56,22 @@
   }
 }
 
+#name-error {
+  display: flex;
+  justify-content: flex-start;
+}
+#nameError {
+  padding-left: unset;
+  padding-top: 3px;
+}
+
+.triangle {
+padding-right: 6px;
+}
+
 #name-submit {
   margin: 10px 0;
+  margin-bottom: 0;
   color: #273f48f2;
   border-color: #273f48f2;
   width: max-content;
@@ -92,8 +107,3 @@
   position: relative;
   -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
 }
-
-
-
-
-

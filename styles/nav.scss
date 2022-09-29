@@ -18,7 +18,6 @@ html {
     .nav-title {
       display: flex;
       justify-content: space-around;
-      // font-size: xx-large;
       align-items: baseline;
       padding-bottom: 3px;
     }
@@ -27,9 +26,6 @@ html {
       transition: transgoem .75s;
     }
 
-    // .nav-title:hover .logo-image {
-    //   transform: scale(1.15);
-    // }
     .logo-image:hover {
       transform: scale(1.05);
     }

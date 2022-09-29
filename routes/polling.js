@@ -4,7 +4,6 @@ const router = express.Router();
 const db = require('../db/connection');
 var http = require('http');
 
-
 const { getPollInformation, createVoter, emailVoteConfirmation, updateCount } = require('../db/queries/polling'); //db queries
 const { nodeMailer } = require('../lib/nodemailer'); //email sender function
 const { user } = require('pg/lib/defaults');
@@ -29,17 +28,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//!! Unfinished? Needs to link voter to options or poll !!
 router.post('/voter', (req, res) => {
-  // getting users IP
-  let userIP = [];
-  http.get({ 'host': 'api.ipify.org', 'port': 80, 'path': '/' }, function(res) {
-    res.on('data', function(ip) {
-      userIP.push(ip);
-      console.log("User's IP: " + ip);
-      return userIP;
-    });
-  });
 
   const voterName = req.body.name;
   createVoter(voterName)

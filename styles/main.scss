@@ -15,11 +15,6 @@ body {
       rgb(89, 144, 139));
 }
 
-
-// .title {
-//   height: 150px;
-// }
-
 .nav-title {
   display: flex;
   justify-content: center;
@@ -27,19 +22,10 @@ body {
   align-items: baseline;
 }
 
-// .nav-message {
-//   display: flex;
-//   justify-content: center;
-// }
-
 .logo-image {
   position: relative;
   transition: transgoem .75s;
 }
-
-// .nav-title:hover .logo-image {
-//   transform: scale(1.15);
-// }
 
 #email-submit {
   color: #273f48f2;
@@ -117,6 +103,11 @@ body {
 }
 
 .submit-button {
+  display: flex;
+  justify-content: center;
+}
+
+#question-error {
   display: flex;
   justify-content: center;
 }
@@ -228,129 +219,3 @@ a {
   font-family: 'Playfair Display', serif;
 }
 
-// delete below. moved to poll.scss
-// Polling Page
-// #poll {
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   margin: 125px;
-//   font-family: 'Playfair Display', serif;
-
-//   h2 {
-//     padding-bottom: 10px;
-//     font-size: large;
-//   }
-
-//   h6 {
-//     display: flex;
-//     align-items: center;
-//     flex-direction: column;
-//   }
-
-//   dt {
-//     font-size: x-large;
-//     padding: 10px 0;
-//   }
-// }
-
-// #question-error {
-//   display: flex;
-//   justify-content: center;
-// }
-
-// #nameError {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: flex-start;
-//   padding-left: 15px;
-//   padding-top: 3px;
-// }
-
-// #valid-name {
-//   margin-bottom: 8px;
-//   background-color: rgb(167 190 176 / 21%);
-//   border: 2.25px solid #273f48a4;
-//   opacity: 65%;
-// }
-
-// .vote-here {
-//   display: flex;
-//   justify-content: center;
-//   padding: 50px 0;
-// }
-
-// #voter-name {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   align-content: center;
-//   margin: 10px 0;
-//   font-family: 'Playfair Display', serif;
-
-//   h2 {
-//     margin-top: 150px;
-//   }
-// }
-
-// .triangle {
-//   display: flex;
-//   align-self: end;
-//   padding-right: 5px;
-// }
-
-// #name-submit {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   margin: auto;
-//   color: #273f48f2;
-//   border-color: #273f48f2;
-// }
-
-// #name-submit:hover {
-//   background-color: #273f4838;
-// }
-
-// #poll-submit {
-//   display: flex;
-//   justify-content: center;
-//   margin: 20px 0;
-//   color: #273f48f2;
-//   border-color: #273f48f2;
-//   width: max-content
-// }
-
-// #poll-submit:hover {
-//   background-color: #273f4864;
-// }
-
-// .list-group-item:hover {
-//   background-color: lightgrey;
-// }
-
-// #finish-vote {
-//   display: flex;
-//   justify-content: center;
-//   font-size: x-large;
-// }
-
-// Admin Page
-
-// #admin-stats {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   margin: 100px;
-//   padding-top: 50px;
-//   font-family: 'Playfair Display', serif;
-
-//   h1 {
-//     padding-bottom: 10px;
-//   }
-
-//   h2 {
-//     padding-bottom: 10px;
-//   }
-
-// }

@@ -39,14 +39,13 @@ const createHexColor = function() {
   const thirdValue = Math.floor(Math.random() * (255 - 0) + 0);
 
   return `rgb(${firstValue}, ${secondValue}, ${thirdValue})`;
-}
+};
 
 // ***
 const $navMessage = $('#nav-message');
-  // nav-bar create a poll
-  $navMessage.on('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    window.location.replace('/')
-  })
+$navMessage.on('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  window.location.replace('/');
+})
 // ***
