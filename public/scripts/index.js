@@ -11,6 +11,7 @@ $(() => {
   const $linkMessage = $('#linkMessage');
   const $optionForm = $('#optionForm');
   const $emailSubmit = $('#email-submit');
+  const $emailError = $('#email-error');
   const $navMessage = $('#nav-message');
 
 
@@ -18,18 +19,23 @@ $(() => {
   $optionForm.hide(); //hides poll creation form
   $linkMessage.hide(); //hides final message elements
 
+
   $emailSubmit.on('click', (event) => {
 
     //adding alert fields for empty email field
     let x = document.getElementById("exampleFormControlInput1").value;
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (x === '') {
-      $email.append(`<section class="alert">Please input an email</section>`);
-      setTimeout(() => { $('.alert').remove(); }, 2000);
+      $emailError.hide()
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8px;"><i class="fa-solid fa-triangle-exclamation"></i> Please enter your email</div>`);
+      $emailError.slideDown('slow');
+      setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
     } else if (!emailReg.test(x)) {
-      $email.append(`<section class="alert">Please input a valid email</section>`);
-      setTimeout(() => { $('.alert').remove(); }, 2000);
+      $emailError.hide()
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8ems"><i class="fa-solid fa-triangle-exclamation"></i> Please enter a valid email</div>`);
+      $emailError.slideDown('slow');
+      setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
     }
 
@@ -40,6 +46,16 @@ $(() => {
   });
 
   $form.on('submit', (event) => {
+
+    let x = document.getElementById("question").value;
+      const $questionError = $('#question-error')
+      if (x === '') {
+        $questionError.hide()
+        $questionError.append(`<div id="alert" class="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please enter a question</div>`);
+        $questionError.slideDown('slow');
+        setTimeout(() => { $('.alert').slideUp(); }, 1500);
+        return false;
+      }
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $form.serialize();
@@ -83,9 +99,9 @@ $(() => {
     const resultLink = data.url_admin;
     const pollLink = data.url_voter;
     $linkAdmin.append(`<a href="${resultLink}" id='admin-link' style="text-decoration: none" >Admin Link</a>`);
-    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $adminCopy.append(`<a id="adminCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${resultLink}"><i class="fa-regular fa-clipboard" style="font-size: 30px;padding-right: 3px;"></i></a>`);
     $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
-    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard"></i></a>`);
+    $voterCopy.append(`<a id="voterCopy" data-toggle="tooltip" title="Copy to Clipboard" href="${pollLink}"><i class="fa-regular fa-clipboard" style="font-size: 30px;padding-right: 3px;"></i></a>`);
 
     $adminCopy.on('click', (event) => {
       event.preventDefault();
@@ -99,19 +115,19 @@ $(() => {
 
       document.execCommand('copy');
       console.log('copied text : ', copyText);
-      // alert('Your admin link: ' + copyText);
       const element1 = document.getElementById('admin-link');
       element1.remove();
       $linkAdmin.append(`<span id="admin-copy"> Link Copied!</span>`);
       const element2 = document.getElementById('admin-copy');
-      setTimeout(()=> {
-        element2.remove()
-        $linkAdmin.append(`<a href="${resultLink}" id='admin-link'style="text-decoration: none" >Admin Link</a>`)
-      }, 2000)
+      setTimeout(() => {
+        element2.remove();
+        $linkAdmin.append(`<a href="${resultLink}" id='admin-link'style="text-decoration: none" >Admin Link</a>`);
+      }, 2000);
 
     });
 
     $voterCopy.on('click', (event) => {
+
       event.preventDefault();
       event.stopPropagation();
       const copyText = pollLink;
@@ -123,15 +139,14 @@ $(() => {
 
       document.execCommand('copy');
       console.log('copied text : ', copyText);
-      // alert('Your voter link: ' + copyText);
       const element1 = document.getElementById('vote-link');
       element1.remove();
-      $linkAdmin.append(`<span id="vote-copy"> Link Copied!</span>`);
+      $linkVoter.append(`<span id="vote-copy"> Link Copied!</span>`);
       const element2 = document.getElementById('vote-copy');
-      setTimeout(()=> {
-        element2.remove()
+      setTimeout(() => {
+        element2.remove();
         $linkVoter.append(`<a href="${pollLink}" id='vote-link' style="text-decoration: none" >Voter Link</a>`);
-      }, 2000)
+      }, 2000);
     });
   };
 
