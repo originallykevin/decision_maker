@@ -10,7 +10,7 @@ html {
     justify-content: center;
     z-index: 1;
     width: 100%;
-    top: 0;
+    top: -15px;
     position: fixed;
     background-color: #385b66;
     font-family: 'Arvo', serif;
@@ -18,8 +18,9 @@ html {
     .nav-title {
       display: flex;
       justify-content: space-around;
-      font-size: xx-large;
+      // font-size: xx-large;
       align-items: baseline;
+      padding-bottom: 3px;
     }
 
     .logo-image {
@@ -29,14 +30,14 @@ html {
     // .nav-title:hover .logo-image {
     //   transform: scale(1.15);
     // }
-    // .logo-image:hover {
-    //   transform: scale(1.15);
-    // }
+    .logo-image:hover {
+      transform: scale(1.05);
+    }
 
     // create new poll button
     #nav-message {
       position:fixed;
-      top: 90px;
+      top: 80px;
       right: 15px;
       font-size: large;
       color: whitesmoke;
