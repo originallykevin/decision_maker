@@ -52,13 +52,13 @@ body {
 }
 
 #alert {
-  padding-left:0%;
+  padding-left: 0%;
   padding-top: 3 em;
 
 }
 
 #email-error {
-  padding-left:0%;
+  padding-left: 0%;
   border-top: 4px;
 }
 
@@ -258,6 +258,21 @@ a {
   justify-content: center;
 }
 
+#nameError {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 15px;
+  padding-top: 3px;
+}
+
+#valid-name {
+  margin-bottom: 8px;
+  background-color: rgb(167 190 176 / 21%);
+  border: 2.25px solid #273f48a4;
+  opacity: 65%;
+}
+
 .vote-here {
   display: flex;
   justify-content: center;
@@ -277,8 +292,17 @@ a {
   }
 }
 
+.triangle {
+  display: flex;
+  align-self: end;
+  padding-right: 5px;
+}
+
 #name-submit {
-  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
   color: #273f48f2;
   border-color: #273f48f2;
 }

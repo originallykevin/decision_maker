@@ -12,6 +12,7 @@ $(() => {
   const $options = $('#options');
   const $listItem = $('#list-group-item'); //?
   const $finishVote = $('#finish-vote');
+  const $nameError = $('#name-error')
 
 
   $poll.hide(); //hides voting options before voter has entered their name
@@ -20,6 +21,16 @@ $(() => {
 
   //on submission of voter name
   $voterName.on('submit', (event) => {
+
+    let x = document.getElementById("valid-name").value;
+      if (x === '') {
+        $nameError.hide()
+        $nameError.append(`<span id="nameError" class="alert"><i class="triangle fa-solid fa-triangle-exclamation"></i>Please enter your name</span>`);
+        $nameError.slideDown('slow');
+        setTimeout(() => { $('.alert').slideUp(); }, 1500);
+        return false;
+      }
+
     event.preventDefault();
     event.stopPropagation();
     const serializedData = $voterName.serialize();

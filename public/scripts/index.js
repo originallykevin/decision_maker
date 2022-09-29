@@ -26,13 +26,13 @@ $(() => {
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (x === '') {
       $emailError.hide()
-      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8px;"><i class="fa-solid fa-triangle-exclamation"></i> Please input an email</div>`);
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8px;"><i class="fa-solid fa-triangle-exclamation"></i> Please enter your email</div>`);
       $emailError.slideDown('slow');
       setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
     } else if (!emailReg.test(x)) {
       $emailError.hide()
-      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8ems"><i class="fa-solid fa-triangle-exclamation"></i> Please input a valid email</div>`);
+      $emailError.append(`<div id="alert" class="alert" style="padding-top: 8ems"><i class="fa-solid fa-triangle-exclamation"></i> Please enter a valid email</div>`);
       $emailError.slideDown('slow');
       setTimeout(() => { $('.alert').slideUp(); }, 1500);
       return false;
