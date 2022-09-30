@@ -19,6 +19,8 @@ This project was designed by [Cindy Chen](https://github.com/cindyc0106), [Spenc
   - username: `labber` 
   - password: `labber` 
   - database: `midterm`
+  - NM_USER: Your email address
+  - NM_PASS: Your email password
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Reset database: `npm run db:reset`
