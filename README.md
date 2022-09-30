@@ -29,6 +29,27 @@ This project was designed by [Cindy Chen](https://github.com/cindyc0106), [Spenc
 
 ## Final Product
 
+#### Creating a poll
+
+!["Creating a poll"](https://github.com/originallykevin/decision_maker/blob/master/public/image/creating-poll.gif)
+
+#### Copying the links
+
+!["Copying the links"](https://github.com/originallykevin/decision_maker/blob/master/public/image/link-coping.gif)
+
+#### Submitting a poll
+
+!["Submitting a poll"](https://github.com/originallykevin/decision_maker/blob/master/public/image/submitting-poll.gif)
+
+#### Checking the poll statistics
+
+!["Checking the poll statistics"](https://github.com/originallykevin/decision_maker/blob/master/public/image/poll-stats.gif)
+
+#### Mobile view
+
+!["Mobile view"](https://github.com/originallykevin/decision_maker/blob/master/public/image/poll-stats-mobile.gif)
+
+
 ## Dependencies
 
 - Node 10.x or above
